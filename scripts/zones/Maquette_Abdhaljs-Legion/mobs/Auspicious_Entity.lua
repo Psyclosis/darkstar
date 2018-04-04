@@ -63,7 +63,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     if (isKiller == true) then
-        player:delStatusEffect(EFFECT_WEAKNESS);
+        player:delStatusEffect(dsp.effects.WEAKNESS);
         player:restoreHP(3000);
         player:messageBasic(024,(player:getMaxHP()-player:getHP()));
         player:restoreMP(3000);

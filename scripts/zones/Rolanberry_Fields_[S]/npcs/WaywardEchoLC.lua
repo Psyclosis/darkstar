@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
 --print("RESULT:",option);
 	if (option == 2) then
 	    if (csid == 455) then
-	    player:addStatusEffect(EFFECT_ALLIED_TAGS);
+	    player:addStatusEffect(dsp.effects.ALLIED_TAGS);
 	    end	
     end
 	return EFFECT_ALLIED_TAGS;

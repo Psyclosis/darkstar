@@ -13,7 +13,7 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 	result = 0;
-	if (!target:hasStatusEffect(EFFECT_KO)) then
+	if (!target:hasStatusEffect(dsp.effects.KO)) then
 		result = 56;
 	end
 	return result;

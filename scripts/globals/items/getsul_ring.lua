@@ -17,8 +17,8 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (target:hasStatusEffect(EFFECT_ENCHANTMENT) == false) then
-		target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,180,14681);
+	if (target:hasStatusEffect(dsp.effects.ENCHANTMENT) == false) then
+		target:addStatusEffect(dsp.effects.ENCHANTMENT,0,0,180,14681);
 	end
 end;
 

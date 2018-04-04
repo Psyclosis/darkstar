@@ -68,7 +68,7 @@ function onCriticalHit(mob)
         for buff, sponges in pairs(peopleNear) do
             local distance = sponges:checkDistance(mob);
             if (sponges:isPC() and distance < 32) then
-                sponges:addStatusEffect(EFFECT_HASTE,224,0,90);
+                sponges:addStatusEffect(dsp.effects.HASTE,224,0,90);
                 sponges:addHP(sponges:getMaxHP() * 0.11);
                 sponges:addMP(sponges:getMaxMP() * 0.11);
                 sponges:addTP(255);

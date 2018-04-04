@@ -20,8 +20,8 @@ function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_SUB_2HOUR, 1);
 
     -- Effects
-    mob:addStatusEffect(EFFECT_DAMAGE_SPIKES,5,0,0);
-    mob:getStatusEffect(EFFECT_DAMAGE_SPIKES):setFlag(32);
+    mob:addStatusEffect(dsp.effects.DAMAGE_SPIKES,5,0,0);
+    mob:getStatusEffect(dsp.effects.DAMAGE_SPIKES):setFlag(32);
 
     -- addMod
     mob:addMod(MOD_ACC,100);
@@ -50,7 +50,7 @@ end;
 
 function onMobDisEngage(mob, target)
     mob:setLocalVar("RAGED", 0);
-    mob:delStatusEffect(EFFECT_RAGE);
+    mob:delStatusEffect(dsp.effects.RAGE);
 end;
 
 -----------------------------------
@@ -86,7 +86,7 @@ function onMobFight(mob, target)
     end
 
     if (mob:getBattleTime() > 3600 and mob:getLocalVar("RAGED") == 0) then
-        mob:addStatusEffectEx(EFFECT_RAGE,0,1,0,0);
+        mob:addStatusEffectEx(dsp.effects.RAGE,0,1,0,0);
         mob:setLocalVar("RAGED", 1);
     end
 end;
@@ -104,13 +104,13 @@ function onSpikesDamage(mob,target,damage)
         local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
         dmg = dmg + (INT_diff * 0.25);
         dmg = utils.clamp(dmg, 1, 99);
-        target:delStatusEffect(EFFECT_DEFENSE_BOOST)
-        if (not target:hasStatusEffect(EFFECT_DEFENSE_DOWN)) then
-            target:addStatusEffect(EFFECT_DEFENSE_DOWN, 20, 0, 30);
+        target:delStatusEffect(dsp.effects.DEFENSE_BOOST)
+        if (not target:hasStatusEffect(dsp.effects.DEFENSE_DOWN)) then
+            target:addStatusEffect(dsp.effects.DEFENSE_DOWN, 20, 0, 30);
         end
-        target:delStatusEffect(EFFECT_ATTACK_BOOST)
-        if (not target:hasStatusEffect(EFFECT_ATTACK_DOWN)) then
-            target:addStatusEffect(EFFECT_ATTACK_DOWN, 20, 0, 30);
+        target:delStatusEffect(dsp.effects.ATTACK_BOOST)
+        if (not target:hasStatusEffect(dsp.effects.ATTACK_DOWN)) then
+            target:addStatusEffect(dsp.effects.ATTACK_DOWN, 20, 0, 30);
         end
         return SUBEFFECT_DELUGE_SPIKES,44,dmg;
     end

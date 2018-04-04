@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
             if (player:hasKeyItem(AIRSHIP_PASS)) then
                 player:delGil(TRAVEL_SKIP);
                 -- player:setPos(-68,2,-36,170,236);
-                player:addStatusEffectEx(EFFECT_COMMUTE,0,COMMUTE.AISHIP_TO_BASTOK,0,2);
+                player:addStatusEffectEx(dsp.effects.COMMUTE,0,COMMUTE.AISHIP_TO_BASTOK,0,2);
             else
                 player:setVar("HasDoorHacked", player:getVar("HasDoorHacked") +1);
                 print(player:getName() .. " tried to TRAVEL_SKIP an airship but didn't have a Airship Pass..");

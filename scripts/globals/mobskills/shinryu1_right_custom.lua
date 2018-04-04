@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
 
     if (math.random(1,10) == 5) then -- 1 in chance of 1 second stun just to interup spells.
-        target:addStatusEffect(EFFECT_STUN, 10, 0, 3);
+        target:addStatusEffect(dsp.effects.STUN, 10, 0, 3);
     end
 
     skill:setMsg(264)

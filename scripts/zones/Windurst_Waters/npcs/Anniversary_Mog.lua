@@ -96,61 +96,61 @@ function onTrigger(player,npc)
         local AnniversaryBuff = math.random(1,10);
         if (player:getVar("AnniversaryBuffGet") < os.time()) then
             if (AnniversaryBuff == 1) then
-                player:addStatusEffect(EFFECT_FLEE,50,0,1800);
+                player:addStatusEffect(dsp.effects.FLEE,50,0,1800);
                 player:setVar("AnniversaryBuffGet", os.time()+3600);
                 player:injectActionPacket(6, 207, 0, 0, 0);
-                player:addStatusEffect(EFFECT_COSTUME,2744,0,1800);
+                player:addStatusEffect(dsp.effects.COSTUME,2744,0,1800);
             elseif (AnniversaryBuff == 2) then
-                player:addStatusEffect(EFFECT_REGEN, 10,1,1800);
-                player:addStatusEffect(EFFECT_REFRESH, 10,1,1800);
+                player:addStatusEffect(dsp.effects.REGEN, 10,1,1800);
+                player:addStatusEffect(dsp.effects.REFRESH, 10,1,1800);
                 player:setVar("AnniversaryBuffGet", os.time()+3600);
                 player:injectActionPacket(6, 207, 0, 0, 0);
             elseif (AnniversaryBuff == 3) then
-                player:addStatusEffect(EFFECT_REGAIN, 10,1,1800);
+                player:addStatusEffect(dsp.effects.REGAIN, 10,1,1800);
                 player:setVar("AnniversaryBuffGet", os.time()+3600);
                 player:injectActionPacket(6, 207, 0, 0, 0);
             elseif (AnniversaryBuff == 4) then
-                player:addStatusEffect(EFFECT_MAX_HP_BOOST,40,0,1800);
-                player:addStatusEffect(EFFECT_MAX_MP_BOOST,40,0,1800);
+                player:addStatusEffect(dsp.effects.MAX_HP_BOOST,40,0,1800);
+                player:addStatusEffect(dsp.effects.MAX_MP_BOOST,40,0,1800);
                 player:setVar("AnniversaryBuffGet", os.time()+3600);
                 player:injectActionPacket(6, 207, 0, 0, 0);
             elseif (AnniversaryBuff == 5) then
-                player:addStatusEffect(EFFECT_STR_BOOST,50,0,1800);
-                player:addStatusEffect(EFFECT_DEX_BOOST,50,0,1800);
-                player:addStatusEffect(EFFECT_VIT_BOOST,50,0,1800);
-                player:addStatusEffect(EFFECT_AGI_BOOST,50,0,1800);
-                player:addStatusEffect(EFFECT_INT_BOOST,50,0,1800);
-                player:addStatusEffect(EFFECT_MND_BOOST,50,0,1800);
-                player:addStatusEffect(EFFECT_CHR_BOOST,50,0,1800);
+                player:addStatusEffect(dsp.effects.STR_BOOST,50,0,1800);
+                player:addStatusEffect(dsp.effects.DEX_BOOST,50,0,1800);
+                player:addStatusEffect(dsp.effects.VIT_BOOST,50,0,1800);
+                player:addStatusEffect(dsp.effects.AGI_BOOST,50,0,1800);
+                player:addStatusEffect(dsp.effects.INT_BOOST,50,0,1800);
+                player:addStatusEffect(dsp.effects.MND_BOOST,50,0,1800);
+                player:addStatusEffect(dsp.effects.CHR_BOOST,50,0,1800);
                 player:setVar("AnniversaryBuffGet", os.time()+3600);
                 player:injectActionPacket(6, 207, 0, 0, 0);
             elseif (AnniversaryBuff == 6) then
-                player:addStatusEffect(EFFECT_CHAINSPELL, 1,0,900);
+                player:addStatusEffect(dsp.effects.CHAINSPELL, 1,0,900);
                 player:setVar("AnniversaryBuffGet", os.time()+3600);
             elseif (AnniversaryBuff == 7) then
-                player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,900);
+                player:addStatusEffect(dsp.effects.HUNDRED_FISTS,1,0,900);
                 player:setVar("AnniversaryBuffGet", os.time()+3600);
                 player:injectActionPacket(6, 207, 0, 0, 0);
             elseif (AnniversaryBuff == 8) then
-                player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,900);
+                player:addStatusEffect(dsp.effects.MIGHTY_STRIKES,1,0,900);
                 player:setVar("AnniversaryBuffGet", os.time()+3600);
             elseif (AnniversaryBuff == 9) then
-                player:addStatusEffect(EFFECT_MANAFONT,1,0,900);
+                player:addStatusEffect(dsp.effects.MANAFONT,1,0,900);
                 player:setVar("AnniversaryBuffGet", os.time()+3600);
                 player:injectActionPacket(6, 207, 0, 0, 0);
             elseif (AnniversaryBuff == 10) then
-                player:addStatusEffect(EFFECT_MAX_HP_BOOST,1000,0,900);
-                player:addStatusEffect(EFFECT_MAX_MP_BOOST,1000,0,900);
-                player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,900);
-                player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,900);
-                player:addStatusEffect(EFFECT_CHAINSPELL,1,0,900);
-                player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,900);
-                player:addStatusEffect(EFFECT_INVINCIBLE,1,0,900);
-                player:addStatusEffect(EFFECT_ELEMENTAL_SFORZO,1,0,900);
-                player:addStatusEffect(EFFECT_MANAFONT,1,0,900);
-                player:addStatusEffect(EFFECT_REGAIN,150,0,900);
-                player:addStatusEffect(EFFECT_REFRESH,99,0,900);
-                player:addStatusEffect(EFFECT_REGEN,99,0,900);
+                player:addStatusEffect(dsp.effects.MAX_HP_BOOST,1000,0,900);
+                player:addStatusEffect(dsp.effects.MAX_MP_BOOST,1000,0,900);
+                player:addStatusEffect(dsp.effects.MIGHTY_STRIKES,1,0,900);
+                player:addStatusEffect(dsp.effects.HUNDRED_FISTS,1,0,900);
+                player:addStatusEffect(dsp.effects.CHAINSPELL,1,0,900);
+                player:addStatusEffect(dsp.effects.PERFECT_DODGE,1,0,900);
+                player:addStatusEffect(dsp.effects.INVINCIBLE,1,0,900);
+                player:addStatusEffect(dsp.effects.ELEMENTAL_SFORZO,1,0,900);
+                player:addStatusEffect(dsp.effects.MANAFONT,1,0,900);
+                player:addStatusEffect(dsp.effects.REGAIN,150,0,900);
+                player:addStatusEffect(dsp.effects.REFRESH,99,0,900);
+                player:addStatusEffect(dsp.effects.REGEN,99,0,900);
                 player:setVar("AnniversaryBuffGet", os.time()+3600);
                 player:injectActionPacket(6, 207, 0, 0, 0);
             end

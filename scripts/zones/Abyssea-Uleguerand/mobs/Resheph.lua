@@ -46,7 +46,7 @@ end;
 -----------------------------------
 
 function onMobFight(mob,target)
-    local has2hr = mob:hasStatusEffect(EFFECT_MEIKYO_SHISUI);
+    local has2hr = mob:hasStatusEffect(dsp.effects.MEIKYO_SHISUI);
     local do2hr = mob:getLocalVar("do2hr");
     local delay = mob:getLocalVar("delay");
 

@@ -59,10 +59,10 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if ((math.random(1,10) > 4) or (target:hasStatusEffect(EFFECT_AMNESIA) == true)) then
+    if ((math.random(1,10) > 4) or (target:hasStatusEffect(dsp.effects.AMNESIA) == true)) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_AMNESIA,1,0,10);
+        target:addStatusEffect(dsp.effects.AMNESIA,1,0,10);
     end
     return SUBEFFECT_SILENCE,163,EFFECT_AMNESIA;
 end;

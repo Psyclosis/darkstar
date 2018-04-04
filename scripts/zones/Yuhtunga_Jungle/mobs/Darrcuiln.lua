@@ -49,7 +49,7 @@ end;
 -----------------------------------
 
 function onMobDisEngage(mob, target)
-    mob:delStatusEffect(EFFECT_RAGE);
+    mob:delStatusEffect(dsp.effects.RAGE);
 end;
 
 -----------------------------------
@@ -65,7 +65,7 @@ function onMobFight(mob, target)
         if (Darrcuiln_2hr_Used == 2) then
             mob:useMobAbility(693); -- PD
             mob:setLocalVar("Darrcuiln_2hr", 3);
-        mob:addStatusEffect(EFFECT_HASTE,200,0,200);
+        mob:addStatusEffect(dsp.effects.HASTE,200,0,200);
         end
     elseif (mob:getHPP() <= 30) then
         if (Darrcuiln_2hr_Used == 1) then
@@ -78,7 +78,7 @@ function onMobFight(mob, target)
             mob:setLocalVar("Darrcuiln_2hr", 1);
         end
     elseif (BattleTime - os.time() > 3600 and mob:getLocalVar("RAGED") == 0) then
-        mob:addStatusEffectEx(EFFECT_RAGE,0,1,0,0);
+        mob:addStatusEffectEx(dsp.effects.RAGE,0,1,0,0);
         mob:setLocalVar("RAGED", 1);
     end
 end;

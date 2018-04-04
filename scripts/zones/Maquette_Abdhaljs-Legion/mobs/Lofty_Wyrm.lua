@@ -45,10 +45,10 @@ function onMobFight(mob,target)
         mob:useMobAbility(688); -- MS
         mob:addMod(MOD_REGAIN, 10);
         mob:addMod(MOD_DOUBLE_ATTACK, 15);
-        mob:addStatusEffect(EFFECT_HASTE,100,0,100);
-        mob:getStatusEffect(EFFECT_HASTE):setFlag(32);
-        mob:addStatusEffect(EFFECT_ATTACK_BOOST,75,0,0);
-        mob:getStatusEffect(EFFECT_ATTACK_BOOST):setFlag(32);
+        mob:addStatusEffect(dsp.effects.HASTE,100,0,100);
+        mob:getStatusEffect(dsp.effects.HASTE):setFlag(32);
+        mob:addStatusEffect(dsp.effects.ATTACK_BOOST,75,0,0);
+        mob:getStatusEffect(dsp.effects.ATTACK_BOOST):setFlag(32);
     elseif (did2hr == 2 and mob:getHPP() <= 40) then
         mob:setLocalVar("did2hr", 3);
         mob:useMobAbility(688); -- MS

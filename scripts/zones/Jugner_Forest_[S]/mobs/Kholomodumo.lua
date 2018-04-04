@@ -64,13 +64,13 @@ end;
 -----------------------------------
 
 function onSpikesDamage(mob,target,damage)
-    if (mob:hasStatusEffect(EFFECT_CURSE_SPIKES)) then
+    if (mob:hasStatusEffect(dsp.effects.CURSE_SPIKES)) then
         -- EFFECT_CURSE_II is not implemented (prevents cure/healing)
-        -- target:addStatusEffect(EFFECT_CURSE_II, 25, 0, 30);
-        target:addStatusEffect(EFFECT_CURSE_I, 25, 0, 30);
+        -- target:addStatusEffect(dsp.effects.CURSE_II, 25, 0, 30);
+        target:addStatusEffect(dsp.effects.CURSE_I, 25, 0, 30);
         return SUBEFFECT_CURSE_SPIKES, 0, 0; -- Zero'd because effing message doesn't work for any status effect spikes.
         -- return SUBEFFECT_CURSE_SPIKES, 166, EFFECT_CURSE_II);
-    elseif (mob:hasStatusEffect(EFFECT_DAMAGE_SPIKES) or mob:hasStatusEffect(EFFECT_BLAZE_SPIKES)) then
+    elseif (mob:hasStatusEffect(dsp.effects.DAMAGE_SPIKES) or mob:hasStatusEffect(dsp.effects.BLAZE_SPIKES)) then
         return SUBEFFECT_BLAZE_SPIKES, 44, damage;
     else
         return 0, 0, 0;

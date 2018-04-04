@@ -14,9 +14,9 @@ function onItemCheck(target)
 	local pet = target:getPet();
 	
 	if (target:getEquipID(SLOT_WAIST) == 10817) then
-		pet:addStatusEffectEx(EFFECT_HASTE,0,51,0,10817);
+		pet:addStatusEffectEx(dsp.effects.HASTE,0,51,0,10817);
 	else
-		pet:delStatusEffect(EFFECT_HASTE,10817);
+		pet:delStatusEffect(dsp.effects.HASTE,10817);
 	end
 end;
 

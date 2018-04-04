@@ -13,15 +13,15 @@ end;
 
 
 function onMobFight(mob, target)
-    if (target:hasStatusEffect(EFFECT_FOOD) == true and mob:hasStatusEffect(EFFECT_FOOD) == false) then
-        local FOOD_ID = target:getStatusEffect(EFFECT_FOOD):getSubType();
+    if (target:hasStatusEffect(dsp.effects.FOOD) == true and mob:hasStatusEffect(dsp.effects.FOOD) == false) then
+        local FOOD_ID = target:getStatusEffect(dsp.effects.FOOD):getSubType();
         if (FOOD_ID >= 4258 and FOOD_ID <= 4264) then
             target:PrintToPlayer("eats the same food you did! ", mob, MESSAGE_EMOTION, nil);
-            mob:addStatusEffect(EFFECT_FOOD,0,0,600,FOOD_ID);
+            mob:addStatusEffect(dsp.effects.FOOD,0,0,600,FOOD_ID);
             target:PrintToPlayer("Maat gains the effect of OH-SNAP! ", chatType.SYSTEM_3, mob:getName());
         else
             target:PrintToPlayer("drinks Granny's Tonic! ", MESSAGE_EMOTION, mob:getName());
-            mob:addStatusEffect(EFFECT_FOOD,0,0,600,5674);
+            mob:addStatusEffect(dsp.effects.FOOD,0,0,600,5674);
             target:PrintToPlayer("Maat gains the effect of OH-SNAP! ", chatType.SYSTEM_3, mob:getName());
         end
     end

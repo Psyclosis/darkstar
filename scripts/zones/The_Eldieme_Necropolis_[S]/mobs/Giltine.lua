@@ -65,8 +65,8 @@ end;
 
 function onSpellPrecast(mob, spell)
     local power = math.random(50,150);
-    mob:addStatusEffect(EFFECT_SHOCK_SPIKES,power,0,15);
-    mob:getStatusEffect(EFFECT_SHOCK_SPIKES):setFlag(32);
+    mob:addStatusEffect(dsp.effects.SHOCK_SPIKES,power,0,15);
+    mob:getStatusEffect(dsp.effects.SHOCK_SPIKES):setFlag(32);
 end;
 
 -----------------------------------

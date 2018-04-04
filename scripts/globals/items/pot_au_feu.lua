@@ -18,7 +18,7 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 result = 0
-	if (target:hasStatusEffect(EFFECT_FOOD) == true) then
+	if (target:hasStatusEffect(dsp.effects.FOOD) == true) then
 		result = 246;
 	end
 return result;
@@ -29,7 +29,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_FOOD,0,0,1800,5752);
+	target:addStatusEffect(dsp.effects.FOOD,0,0,1800,5752);
 end;
 
 -----------------------------------

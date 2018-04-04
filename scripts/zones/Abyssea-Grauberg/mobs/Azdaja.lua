@@ -51,10 +51,10 @@ end;
 -- onAdditionalEffect Action
 -----------------------------------
 function onAdditionalEffect(mob,target,damage)
-    if ((math.random(1,10) ~= 5) or (target:hasStatusEffect(EFFECT_AMNESIA) == true)) then
+    if ((math.random(1,10) ~= 5) or (target:hasStatusEffect(dsp.effects.AMNESIA) == true)) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_AMNESIA,1,0,10);
+        target:addStatusEffect(dsp.effects.AMNESIA,1,0,10);
     end
     return SUBEFFECT_NONE, chatType.ADD_EFFECT_DMG,EFFECT_AMNESIA;
 end;

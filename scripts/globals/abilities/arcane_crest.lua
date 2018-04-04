@@ -19,5 +19,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-    target:addStatusEffect(EFFECT_ARCANE_CREST,-10,0,180);
+    target:addStatusEffect(dsp.effects.ARCANE_CREST,-10,0,180);
 end;

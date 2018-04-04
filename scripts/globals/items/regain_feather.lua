@@ -18,7 +18,7 @@ function onItemCheck(target)
 	mMP = target:getMaxMP();
 	cMP = target:getMP();
 	result = 0;
-	if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+	if (target:hasStatusEffect(dsp.effects.MEDICINE)) then
 		result = 111;
 	end
 	if (mHP == cHP and mMP == cMP) then
@@ -32,7 +32,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_MEDICINE,0,0,7200,5260);
+	target:addStatusEffect(dsp.effects.MEDICINE,0,0,7200,5260);
 	target:setHP(mHP);
 	target:setMP(mMP);
 	target:setTP(300);

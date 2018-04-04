@@ -73,13 +73,13 @@ function onAdditionalEffect(mob,target,damage)
 
     if (RND == 1) then
         EFFECT = EFFECT_AMNESIA;
-        target:addStatusEffect(EFFECT_AMNESIA,1,0,10);
+        target:addStatusEffect(dsp.effects.AMNESIA,1,0,10);
     elseif (RND == 2) then
         EFFECT = EFFECT_SILENCE;
-        target:addStatusEffect(EFFECT_SILENCE,1,0,10);
+        target:addStatusEffect(dsp.effects.SILENCE,1,0,10);
     elseif (RND == 3) then
         EFFECT = EFFECT_BIO;
-        target:addStatusEffect(EFFECT_BIO,100,3,5);
+        target:addStatusEffect(dsp.effects.BIO,100,3,5);
     end
 
     return SUBEFFECT_POISON,163,EFFECT;

@@ -14,7 +14,7 @@ function onSpellCast(caster,target,spell)
     local tp = 10;
     local duration = 180;
 
-    target:addStatusEffect(EFFECT_REGAIN, tp, 0, duration);
+    target:addStatusEffect(dsp.effects.REGAIN, tp, 0, duration);
 
     return EFFECT_REGAIN;
 end;

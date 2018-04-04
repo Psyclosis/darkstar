@@ -19,5 +19,5 @@ end;
 
 function OnUseAbility(player, target, ability)
 
-	player:addStatusEffect(EFFECT_SCARLET_DELIRIUM_I,1,0,180);
+	player:addStatusEffect(dsp.effects.SCARLET_DELIRIUM_I,1,0,180);
 end;

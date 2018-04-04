@@ -28,7 +28,7 @@ function onMobWeaponSkill(target, mob, skill)
     else
         MobStatusEffectMove(mob, target, EFFECT_GRADUAL_PETRIFICATION, 1, 0, 60);
     end
-    mob:addStatusEffect(EFFECT_REPRISAL, 10, 0, 600);
+    mob:addStatusEffect(dsp.effects.REPRISAL, 10, 0, 600);
     MobStatusEffectMove(mob, target, EFFECT_DIA, 25, 0, 60, 50);
     target:delHP(dmg);
     return dmg;

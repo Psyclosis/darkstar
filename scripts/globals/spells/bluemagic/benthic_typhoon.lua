@@ -40,8 +40,8 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
     if (damage > 0 and resist > 0.125) then
-        target:addStatusEffect(EFFECT_DEFENSE_DOWN, 10, 0, 60 * resist);
-        target:addStatusEffect(EFFECT_MAGIC_DEF_DOWN, 10, 0, 60 * resist);
+        target:addStatusEffect(dsp.effects.DEFENSE_DOWN, 10, 0, 60 * resist);
+        target:addStatusEffect(dsp.effects.MAGIC_DEF_DOWN, 10, 0, 60 * resist);
     end
 
     return damage;

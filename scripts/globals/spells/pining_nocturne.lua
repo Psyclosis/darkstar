@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
     duration = duration + (duration * ((caster:getMod(MOD_ALL_SONGS_EFFECT) * 10)/100));
     power = power + (caster:getMod(MOD_ALL_SONGS_EFFECT) * 4);
 
-    target:addStatusEffect(EFFECT_NOCTURNE,power,0,duration);
+    target:addStatusEffect(dsp.effects.NOCTURNE,power,0,duration);
     spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
 
     return EFFECT_NOCTURNE;

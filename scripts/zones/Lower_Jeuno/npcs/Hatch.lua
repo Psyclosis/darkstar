@@ -14,7 +14,7 @@ end;
 function onTrigger(player,npc)
     if (TRAVEL_SKIP >= 1 and player:getLocalVar("BRIBED_GARVEV") > 0) then
         player:PrintToPlayer("You stealthily board the secret express freight to Norg.. ", chatType.SYSTEM_3);
-        player:addStatusEffectEx(EFFECT_COMMUTE,0,COMMUTE.SHIP_TO_NORG,0,2);
+        player:addStatusEffectEx(dsp.effects.COMMUTE,0,COMMUTE.SHIP_TO_NORG,0,2);
     else
         player:PrintToPlayer("Garnev : HEY! Get away from there! Don't go pokin yer nose where it doesn't belong. ", chatType.NS_SAY);
     end

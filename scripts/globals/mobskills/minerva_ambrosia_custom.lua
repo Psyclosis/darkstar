@@ -19,6 +19,6 @@ function onMobWeaponSkill(target, mob, skill)
      mob:addMod(MOD_CHR, 10);
      -- End temp buffs
     skill:setMsg(0);
-    mob:addStatusEffect(EFFECT_FOOD,0,0,14400,4511);
+    mob:addStatusEffect(dsp.effects.FOOD,0,0,14400,4511);
     return 0;
 end;

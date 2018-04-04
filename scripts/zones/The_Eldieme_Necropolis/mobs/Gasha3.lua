@@ -69,10 +69,10 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if (math.random(1,10) > 4 or target:hasStatusEffect(EFFECT_PARALYSIS) == true) then
+    if (math.random(1,10) > 4 or target:hasStatusEffect(dsp.effects.PARALYSIS) == true) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_PARALYSIS,1,0,10);
+        target:addStatusEffect(dsp.effects.PARALYSIS,1,0,10);
     end
 
     return SUBEFFECT_PARALYSIS,chatType.ADD_EFFECT_STATUS,EFFECT_PARALYSIS;

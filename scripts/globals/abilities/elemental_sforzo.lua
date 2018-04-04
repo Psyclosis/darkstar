@@ -15,5 +15,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	target:addStatusEffect(EFFECT_ELEMENTAL_SFORZO,1,0,30);
+	target:addStatusEffect(dsp.effects.ELEMENTAL_SFORZO,1,0,30);
 end;

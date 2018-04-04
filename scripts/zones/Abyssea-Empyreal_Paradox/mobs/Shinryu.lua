@@ -88,7 +88,7 @@ function onMobFight(mob, target)
         if (Shinryu_2hr_Used == 2) then
             mob:useMobAbility(688); -- MS
             mob:setLocalVar("Shinryu_2hr", 3);
-            mob:addStatusEffect(EFFECT_HASTE,200,0,200);
+            mob:addStatusEffect(dsp.effects.HASTE,200,0,200);
             mob:setMod(MOD_REGAIN,40);
             mob:setMod(MOD_UFASTCAST, 95);
         end

@@ -17,5 +17,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_PERFECT_COUNTER,1,0,30);
+	player:addStatusEffect(dsp.effects.PERFECT_COUNTER,1,0,30);
 end;

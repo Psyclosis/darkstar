@@ -80,10 +80,10 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if (math.random(1,10) > 4 or target:hasStatusEffect(EFFECT_CURSE_I) == true) then
+    if (math.random(1,10) > 4 or target:hasStatusEffect(dsp.effects.CURSE_I) == true) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_CURSE_I,40,0,10);
+        target:addStatusEffect(dsp.effects.CURSE_I,40,0,10);
         return SUBEFFECT_CURSE, chatType.ADD_EFFECT_STATUS, EFFECT_CURSE_I;
     end
 end;

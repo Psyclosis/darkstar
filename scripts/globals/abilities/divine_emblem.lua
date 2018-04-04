@@ -17,8 +17,8 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	if (player:hasStatusEffect(EFFECT_ELEMENTAL_SEAL) == true) then
-		player:delStatusEffect(EFFECT_ELEMENTAL_SEAL);
+	if (player:hasStatusEffect(dsp.effects.ELEMENTAL_SEAL) == true) then
+		player:delStatusEffect(dsp.effects.ELEMENTAL_SEAL);
 	end
-	player:addStatusEffect(EFFECT_DIVINE_EMBLEM,1,0,60);
+	player:addStatusEffect(dsp.effects.DIVINE_EMBLEM,1,0,60);
 end;

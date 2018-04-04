@@ -16,7 +16,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local erase = mob:eraseStatusEffect();
-    mob:addStatusEffect(EFFECT_REPRISAL, 10, 0, 600);
+    mob:addStatusEffect(dsp.effects.REPRISAL, 10, 0, 600);
 
     if (mob:eraseStatusEffect() == EFFECT_NONE) then
         skill:setMsg(msgBasic.SELF_HEAL);

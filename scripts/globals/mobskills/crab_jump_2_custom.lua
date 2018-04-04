@@ -19,7 +19,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
     if (dmg > 0) then
-        if (mob:hasStatusEffect(EFFECT_SPIRIT_SURGE)) then
+        if (mob:hasStatusEffect(dsp.effects.SPIRIT_SURGE)) then
             target:addTP(-50);
             mob:addTP(4);
         end

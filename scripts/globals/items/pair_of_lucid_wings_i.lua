@@ -18,7 +18,7 @@ function onItemCheck(target)
     if (target:getTP() == 300) then
         result = 56; -- Does not let player use item if their TP is full
     end
-    if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+    if (target:hasStatusEffect(dsp.effects.MEDICINE)) then
         result = 111;
     end
     return result;
@@ -29,6 +29,6 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_MEDICINE,0,0,180);
+    target:addStatusEffect(dsp.effects.MEDICINE,0,0,180);
     target:addTP(target:getTP() * 0.5);
 end;

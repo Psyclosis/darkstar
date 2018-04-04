@@ -29,8 +29,8 @@ function onMobInitialize(mob)
     mob:addMod(MOD_ATT,150);
 
     -- Effects
-    mob:addStatusEffect(EFFECT_BLAZE_SPIKES,75,0,0);
-    mob:getStatusEffect(EFFECT_BLAZE_SPIKES):setFlag(32);
+    mob:addStatusEffect(dsp.effects.BLAZE_SPIKES,75,0,0);
+    mob:getStatusEffect(dsp.effects.BLAZE_SPIKES):setFlag(32);
 end;
 
 -----------------------------------

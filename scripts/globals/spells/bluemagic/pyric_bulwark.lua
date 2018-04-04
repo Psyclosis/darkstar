@@ -16,17 +16,17 @@ function onSpellCast(caster, target, spell)
 
     local duration = 300;
 
-    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+    if (caster:hasStatusEffect(dsp.effects.DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
 
         if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;
         end
 
-        caster:delStatusEffect(EFFECT_DIFFUSION);
+        caster:delStatusEffect(dsp.effects.DIFFUSION);
     end
 
-    if (target:addStatusEffect(EFFECT_DEFENSE_BOOST,power,0,duration)) then
+    if (target:addStatusEffect(dsp.effects.DEFENSE_BOOST,power,0,duration)) then
         spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);

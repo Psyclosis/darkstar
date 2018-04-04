@@ -20,8 +20,8 @@ end;
 
 function onItemUse(target)
 
-	if (target:hasStatusEffect(EFFECT_AMNESIA) == true) then
-		target:delStatusEffect(EFFECT_AMNESIA);
+	if (target:hasStatusEffect(dsp.effects.AMNESIA) == true) then
+		target:delStatusEffect(dsp.effects.AMNESIA);
 	else
         	target:messageBasic(423); -- no effect
         end

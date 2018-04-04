@@ -22,6 +22,6 @@ end;
 
 function onItemUse(target)
 	local duration = 180;
-	target:delStatusEffect(EFFECT_POISON);
-	target:addStatusEffect(EFFECT_POISON,1,0,duration);
+	target:delStatusEffect(dsp.effects.POISON);
+	target:addStatusEffect(dsp.effects.POISON,1,0,duration);
 end;

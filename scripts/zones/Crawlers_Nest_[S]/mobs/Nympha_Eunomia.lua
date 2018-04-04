@@ -57,10 +57,10 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if ((math.random(1,10) > 4) or (target:hasStatusEffect(EFFECT_SLOW) == true)) then
+    if ((math.random(1,10) > 4) or (target:hasStatusEffect(dsp.effects.SLOW) == true)) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_SLOW,30,0,10);
+        target:addStatusEffect(dsp.effects.SLOW,30,0,10);
     end
     return SUBEFFECT_PARALYSIS,163,EFFECT_SLOW;
 end;

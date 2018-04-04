@@ -46,7 +46,7 @@ function onMobSpawn(mob)
 
     -- Temp
     mob:AnimationSub(0); -- reset
-    mob:delStatusEffect(EFFECT_ALL_MISS);
+    mob:delStatusEffect(dsp.effects.ALL_MISS);
 end;
 
 -----------------------------------
@@ -93,7 +93,7 @@ function onMobFight(mob, target)
         -- We are on the ground, check if we should be flying..
         if (helperOne ~= ACTION_NONE or helperTwo ~= ACTION_NONE) then
             mob:AnimationSub(1); -- fly
-            mob:addStatusEffectEx(EFFECT_ALL_MISS, 0, 1, 0, 0);
+            mob:addStatusEffectEx(dsp.effects.ALL_MISS, 0, 1, 0, 0);
             -- mob:SetMobSkillAttack(LIST_ID_HERE);
         end
     else

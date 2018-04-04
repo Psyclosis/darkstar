@@ -12,7 +12,7 @@ function onEffectGain(target,effect)
     if (target:getPet()) then
         target:getPet():addStatusEffect(effect);
     end
-    target:delStatusEffect(EFFECT_LEGION);
+    target:delStatusEffect(dsp.effects.LEGION);
 end;
 
 -----------------------------------
@@ -30,7 +30,7 @@ function onEffectLose(target,effect)
     if (target:getPet()) then
         target:getPet():delStatusEffect(dsp.effects.BATTLEFIELD);
     end
-    target:delStatusEffect(EFFECT_LEGION);
+    target:delStatusEffect(dsp.effects.LEGION);
 end;
 
 -----------------------------------

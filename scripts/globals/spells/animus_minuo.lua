@@ -14,7 +14,7 @@ function onSpellCast(caster,target,spell)
     local power = -10;
     local duration = 180;
 
-    target:addStatusEffect(EFFECT_PAX,power,0,duration);
+    target:addStatusEffect(dsp.effects.PAX,power,0,duration);
 
     return EFFECT_PAX;
 end;

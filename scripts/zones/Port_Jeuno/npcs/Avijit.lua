@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
             if (player:hasKeyItem(AIRSHIP_PASS)) then
                 player:delGil(TRAVEL_SKIP);
                 -- player:setPos(-30,-2,42,0,232);
-                player:addStatusEffectEx(EFFECT_COMMUTE,0,COMMUTE.AISHIP_TO_SANDORIA,0,2);
+                player:addStatusEffectEx(dsp.effects.COMMUTE,0,COMMUTE.AISHIP_TO_SANDORIA,0,2);
             else
                 player:setVar("HasDoorHacked", player:getVar("HasDoorHacked") +1);
 

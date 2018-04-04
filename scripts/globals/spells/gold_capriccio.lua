@@ -26,8 +26,8 @@ function onSpellCast(caster,target,spell)
 
     -- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
     -- Since all the tiers use the same effect buff it is hard to delete a specific one.
-    target:delStatusEffect(EFFECT_CAPRICCIO);
-    target:addStatusEffect(EFFECT_CAPRICCIO,power,0,duration);
+    target:delStatusEffect(dsp.effects.CAPRICCIO);
+    target:addStatusEffect(dsp.effects.CAPRICCIO,power,0,duration);
     spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     return EFFECT_CAPRICCIO;
     ]]

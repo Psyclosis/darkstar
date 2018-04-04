@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     mob:SetMobSkillAttack(0);
     utils.clamp(distance, 0, 40)
     dmg = dmg * ((50 - distance) / 50);
-    mob:addStatusEffectEx(EFFECT_CUSTOM_ENSPELL, EFFECT_ENLIGHT, 7, 0, 600);
+    mob:addStatusEffectEx(dsp.effects.CUSTOM_ENSPELL, EFFECT_ENLIGHT, 7, 0, 600);
     target:delHP(dmg);
 
     return dmg;

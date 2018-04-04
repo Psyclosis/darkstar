@@ -59,10 +59,10 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if (math.random(1,15) ~= 7 or target:hasStatusEffect(EFFECT_PETRIFICATION) == true) then
+    if (math.random(1,15) ~= 7 or target:hasStatusEffect(dsp.effects.PETRIFICATION) == true) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_PETRIFICATION,10,0,15);
+        target:addStatusEffect(dsp.effects.PETRIFICATION,10,0,15);
         return SUBEFFECT_PETRIFY,163,EFFECT_PETRIFICATION;
     end
 end;

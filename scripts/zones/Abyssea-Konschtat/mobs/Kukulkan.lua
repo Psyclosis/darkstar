@@ -55,12 +55,12 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if (target:hasStatusEffect(EFFECT_POISON)) then
+    if (target:hasStatusEffect(dsp.effects.POISON)) then
         return 0, 0, 0;
     else
         local duration = 30 * applyResistanceAddEffect(mob, target, ELE_WATER, EFFECT_POISON)
         duartion = utils.clamp(duration,1,30);
-        target:addStatusEffect(EFFECT_POISON, 100, 3, duration);
+        target:addStatusEffect(dsp.effects.POISON, 100, 3, duration);
         return SUBEFFECT_POISON, chatType.ADD_EFFECT_STATUS, EFFECT_POISON;
     end
 end;

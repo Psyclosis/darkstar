@@ -13,7 +13,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = EFFECT_SPIRIT_SURGE;
-    mob:addStatusEffect(EFFECT_REGAIN, 10, 3, 60);
+    mob:addStatusEffect(dsp.effects.REGAIN, 10, 3, 60);
     mob:setLocalVar("J1", mob:getBattleTime()+30);
     mob:setLocalVar("J2", mob:getBattleTime()+45);
     mob:setLocalVar("J3", mob:getBattleTime()+90);

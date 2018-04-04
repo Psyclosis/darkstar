@@ -11,10 +11,10 @@
 -----------------------------------------
 
 function onItemCheck(target)
-	if (target:hasStatusEffect(EFFECT_BIND) == true) then
-		target:addStatusEffect(EFFECT_REGEN,2,1,120);
-	elseif (target:hasStatusEffect(EFFECT_BIND) == false) then
-		target:delStatusEffect(EFFECT_REGEN);
+	if (target:hasStatusEffect(dsp.effects.BIND) == true) then
+		target:addStatusEffect(dsp.effects.REGEN,2,1,120);
+	elseif (target:hasStatusEffect(dsp.effects.BIND) == false) then
+		target:delStatusEffect(dsp.effects.REGEN);
 	end
 end;
 
@@ -24,6 +24,6 @@ end;
 
 function onItemUse(target)
 	local duration = 120;
-	target:delStatusEffect(EFFECT_BIND);
-	target:addStatusEffect(EFFECT_BIND,1,0,duration);
+	target:delStatusEffect(dsp.effects.BIND);
+	target:addStatusEffect(dsp.effects.BIND,1,0,duration);
 end;

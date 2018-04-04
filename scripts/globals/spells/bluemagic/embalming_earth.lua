@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
     params.skillType = BLUE_SKILL;
     params.effect = EFFECT_SLOW;
     params.multiplier = 3.0;
-    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(dsp.effects.AZURE_LORE)) then
         params.multiplier = params.multiplier + 0.50;
     end
     params.tMultiplier = 2.0;
@@ -36,7 +36,7 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
     if (resist > 0.25) then
-        target:addStatusEffect(EFFECT_SLOW,25,0,getBlueEffectDuration(caster,resist,params.effect));
+        target:addStatusEffect(dsp.effects.SLOW,25,0,getBlueEffectDuration(caster,resist,params.effect));
     end
 
     return damage;

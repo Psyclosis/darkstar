@@ -8,7 +8,7 @@ require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    if (caster:hasStatusEffect(EFFECT_UNBRIDLED_LEARNING) == true) then
+    if (caster:hasStatusEffect(dsp.effects.UNBRIDLED_LEARNING) == true) then
         return 0;
     else
         return chatType.STATUS_PREVENTS;
@@ -16,21 +16,21 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+    if (caster:hasStatusEffect(dsp.effects.DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
 
         if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;
         end
 
-        caster:delStatusEffect(EFFECT_DIFFUSION);
+        caster:delStatusEffect(dsp.effects.DIFFUSION);
     end
 
-    if (caster:hasStatusEffect(EFFECT_MAGIC_ATK_BOOST) and caster:hasStatusEffect(EFFECT_MAGIC_DEF_BOOST) == true) then
+    if (caster:hasStatusEffect(dsp.effects.MAGIC_ATK_BOOST) and caster:hasStatusEffect(dsp.effects.MAGIC_DEF_BOOST) == true) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     else
-        caster:addStatusEffect(EFFECT_MAGIC_ATK_BOOST,25,0,90);
-        caster:addStatusEffect(EFFECT_ATTACK_BOOST,50,0,90);
+        caster:addStatusEffect(dsp.effects.MAGIC_ATK_BOOST,25,0,90);
+        caster:addStatusEffect(dsp.effects.ATTACK_BOOST,50,0,90);
     end
 
     return EFFECT_MAGIC_ATK_BOOST;

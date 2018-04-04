@@ -62,10 +62,10 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if ((math.random(1,10) > 8) or (target:hasStatusEffect(EFFECT_SILENCE) == true)) then
+    if ((math.random(1,10) > 8) or (target:hasStatusEffect(dsp.effects.SILENCE) == true)) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_SILENCE,10,0,15);
+        target:addStatusEffect(dsp.effects.SILENCE,10,0,15);
     end
 
     return SUBEFFECT_SILENCE,163,EFFECT_SILENCE;

@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
             player:PrintToPlayer("Ha! Somebody told you about the 'special ticket'! Alright, get on board. ", chatType.SAY, npc:getName());
             player:delGil(TRAVEL_SKIP);
             -- player:setPos(-393.5,-3,-387,64,4);
-            player:addStatusEffectEx(EFFECT_COMMUTE,0,COMMUTE.FERRY_PURGONORGO,0,2);
+            player:addStatusEffectEx(dsp.effects.COMMUTE,0,COMMUTE.FERRY_PURGONORGO,0,2);
         end
     end
 end;

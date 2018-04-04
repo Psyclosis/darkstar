@@ -21,7 +21,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	if (target:addStatusEffect(EFFECT_HASTE, 102, 0, 180)) then
+	if (target:addStatusEffect(dsp.effects.HASTE, 102, 0, 180)) then
 		target:messageBasic(205);
 	else
 		target:messageBasic(423); -- no effect

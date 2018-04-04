@@ -60,10 +60,10 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if ((math.random(1,10) > 4) or (target:hasStatusEffect(EFFECT_STUN) == true)) then
+    if ((math.random(1,10) > 4) or (target:hasStatusEffect(dsp.effects.STUN) == true)) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_STUN,1,0,5);
+        target:addStatusEffect(dsp.effects.STUN,1,0,5);
     end
     return SUBEFFECT_STUN,163,EFFECT_STUN;
 end;

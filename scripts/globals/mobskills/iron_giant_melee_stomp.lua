@@ -22,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
         local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
         if (math.random(1,10) == 5) then
-            target:addStatusEffect(EFFECT_AMNESIA, 10, 0, 10);
+            target:addStatusEffect(dsp.effects.AMNESIA, 10, 0, 10);
         end
 
         -- skill:setMsg(msgBasic.MELEE); -- Single Target MSG
@@ -42,7 +42,7 @@ function onMobWeaponSkill(target, mob, skill)
         local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
         if (math.random(1,10) == 5) then
-            target:addStatusEffect(EFFECT_AMNESIA, 10, 0, 10);
+            target:addStatusEffect(dsp.effects.AMNESIA, 10, 0, 10);
         end
 
         -- skill:setMsg(msgBasic.MELEE); -- Single Target MSG
@@ -62,7 +62,7 @@ function onMobWeaponSkill(target, mob, skill)
         local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
         if (math.random(1,10) == 5) then
-            target:addStatusEffect(EFFECT_AMNESIA, 10, 0, 10);
+            target:addStatusEffect(dsp.effects.AMNESIA, 10, 0, 10);
         end
 
         -- skill:setMsg(msgBasic.MELEE); -- Single Target MSG

@@ -14,15 +14,15 @@ end;
 function onSpellCast(caster,target,spell)
     local duration = 300;
 
-    if (caster:hasStatusEffect(EFFECT_DIFFUSION)) then
+    if (caster:hasStatusEffect(dsp.effects.DIFFUSION)) then
         local diffMerit = caster:getMerit(MERIT_DIFFUSION);
         if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;
         end
-        caster:delStatusEffect(EFFECT_DIFFUSION);
+        caster:delStatusEffect(dsp.effects.DIFFUSION);
     end
 
-    if (target:addStatusEffect(EFFECT_HASTE,300,0,duration) == false) then
+    if (target:addStatusEffect(dsp.effects.HASTE,300,0,duration) == false) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 

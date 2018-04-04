@@ -89,7 +89,7 @@ function onTrigger(player, subcom, param, param2, param3)
                 require("scripts/globals/status");
                 require("scripts/globals/teleports");
                 player:injectActionPacket(4, 261, 0, 0, 0);
-                player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,4);
+                player:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_WARP,0,4);
             else
                 player:PrintToPlayer("CANNOT TELEPORT JAILED CHARACTER! ");
             end

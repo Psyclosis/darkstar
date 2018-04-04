@@ -15,9 +15,9 @@ function onItemCheck(target)
 	local pet = target:getPet();
 	
 	if (target:getEquipID(SLOT_MAIN) == 18547 or target:getEquipID(SLOT_SUB) == 18547) then
-		pet:addStatusEffectEx(EFFECT_AUTO_REGEN,0,10,3,0,18547);
+		pet:addStatusEffectEx(dsp.effects.AUTO_REGEN,0,10,3,0,18547);
 	else
-		pet:delStatusEffect(EFFECT_AUTO_REGEN,18547);
+		pet:delStatusEffect(dsp.effects.AUTO_REGEN,18547);
 	end
 end;
 

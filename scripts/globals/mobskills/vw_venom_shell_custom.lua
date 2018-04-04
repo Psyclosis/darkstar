@@ -13,6 +13,6 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD,0,1,0,60);
-    mob:addStatusEffect(EFFECT_REGEN,100,3,60);
+    mob:addStatusEffectEx(dsp.effects.PHYSICAL_SHIELD,0,1,0,60);
+    mob:addStatusEffect(dsp.effects.REGEN,100,3,60);
 end;

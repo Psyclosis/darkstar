@@ -15,5 +15,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	target:addStatusEffect(EFFECT_ONE_FOR_ALL,1,0,30);
+	target:addStatusEffect(dsp.effects.ONE_FOR_ALL,1,0,30);
 end;

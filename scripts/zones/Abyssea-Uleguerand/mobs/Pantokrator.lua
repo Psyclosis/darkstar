@@ -122,7 +122,7 @@ function onMobFight(mob,target)
         mob:setMod(MOD_PIERCERES,1400);
         mob:setMod(MOD_IMPACTRES,1400);
         mob:setMod(MOD_HTHRES,1400);
-        mob:addStatusEffect(EFFECT_CHAINSPELL,1,0,15);
+        mob:addStatusEffect(dsp.effects.CHAINSPELL,1,0,15);
         for n =1,table.getn (resistMod),1 do
         mob:setMod(resistMod[n],100);
         end
@@ -135,8 +135,8 @@ function onMobFight(mob,target)
         mob:setMod(MOD_PIERCERES,1450);
         mob:setMod(MOD_IMPACTRES,1450);
         mob:setMod(MOD_HTHRES,1450);
-        mob:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,15);
-        mob:addStatusEffect(EFFECT_REGAIN,7,3,0);
+        mob:addStatusEffect(dsp.effects.HUNDRED_FISTS,1,0,15);
+        mob:addStatusEffect(dsp.effects.REGAIN,7,3,0);
         for n =1,table.getn (resistMod),1 do
         mob:setMod(resistMod[n],-50);
         end

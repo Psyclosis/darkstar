@@ -13,7 +13,7 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 	result = 0;
-	if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+	if (target:hasStatusEffect(dsp.effects.MEDICINE)) then
 		result = 111;
 	end
 	return result;
@@ -26,19 +26,19 @@ end;
 function onItemUse(target)
 	power = 1;
 	duration = 1800;
-	if (target:hasStatusEffect(EFFECT_RERAISE) ==true)then
-		effect = target:getStatusEffect(EFFECT_RERAISE);
+	if (target:hasStatusEffect(dsp.effects.RERAISE) ==true)then
+		effect = target:getStatusEffect(dsp.effects.RERAISE);
 		oPower = effect:getPower();
 		if (oPower > power) then
 			target:messageBasic(283); -- Higher Tiered verson means no effect!
 		else
-			target:delStatusEffect(EFFECT_RERAISE);
-			target:addStatusEffect(EFFECT_RERAISE,power,0,duration);
-			target:addStatusEffect(EFFECT_MEDICINE,0,0,3600,5412);
+			target:delStatusEffect(dsp.effects.RERAISE);
+			target:addStatusEffect(dsp.effects.RERAISE,power,0,duration);
+			target:addStatusEffect(dsp.effects.MEDICINE,0,0,3600,5412);
 		end
 	else	
-		target:addStatusEffect(EFFECT_RERAISE,power,0,duration);
-		target:addStatusEffect(EFFECT_MEDICINE,0,0,3600,5412);
+		target:addStatusEffect(dsp.effects.RERAISE,power,0,duration);
+		target:addStatusEffect(dsp.effects.MEDICINE,0,0,3600,5412);
 	end
 end;
 

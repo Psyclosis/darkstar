@@ -49,14 +49,14 @@ end;
 
 function onMobFight(mob,target)
     local VRTRA = GetMobByID(17555890);
-    if (VRTRA:hasStatusEffect(EFFECT_MIGHTY_STRIKES)) then
-        if (mob:hasStatsEffect(EFFECT_ATTACK_BOOST) == false) then
-            mob:addStatusEffect(EFFECT_ATTACK_BOOST, 20, 0, 35);
-            mob:addStatusEffectEx(EFFECT_STR_BOOST, 0, 20, 0, 35);
+    if (VRTRA:hasStatusEffect(dsp.effects.MIGHTY_STRIKES)) then
+        if (mob:hasStatsEffect(dsp.effects.ATTACK_BOOST) == false) then
+            mob:addStatusEffect(dsp.effects.ATTACK_BOOST, 20, 0, 35);
+            mob:addStatusEffectEx(dsp.effects.STR_BOOST, 0, 20, 0, 35);
         end
-        if (mob:hasStatsEffect(EFFECT_MAGIC_DEF_BOOST) == false) then
-            mob:addStatusEffect(EFFECT_MAGIC_DEF_BOOST, 35, 0, 35);
-            mob:addStatusEffectEx(EFFECT_INT_BOOST, 0, 20, 0, 35);
+        if (mob:hasStatsEffect(dsp.effects.MAGIC_DEF_BOOST) == false) then
+            mob:addStatusEffect(dsp.effects.MAGIC_DEF_BOOST, 35, 0, 35);
+            mob:addStatusEffectEx(dsp.effects.INT_BOOST, 0, 20, 0, 35);
         end
     end
 end

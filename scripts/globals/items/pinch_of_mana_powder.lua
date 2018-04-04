@@ -17,7 +17,7 @@ function onItemCheck(target)
         result = 56; -- Does not let player use item if their mp is full
     end
 
-    if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+    if (target:hasStatusEffect(dsp.effects.MEDICINE)) then
         result = 111;
     end
 

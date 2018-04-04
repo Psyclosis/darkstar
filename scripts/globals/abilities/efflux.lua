@@ -14,6 +14,6 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	target:delStatusEffect(EFFECT_EFFLUX);
-	target:addStatusEffect(EFFECT_EFFLUX,1,0,60);
+	target:delStatusEffect(dsp.effects.EFFLUX);
+	target:addStatusEffect(dsp.effects.EFFLUX,1,0,60);
 end;

@@ -49,14 +49,14 @@ end;
 
 function onMobFight(mob,target)
     local VRTRA = GetMobByID(17555890);
-    if (VRTRA:hasStatusEffect(EFFECT_BLOOD_WEAPON)) then
-        if (mob:hasStatsEffect(EFFECT_MAGIC_ATK_BOOST) == false) then
-            mob:addStatusEffect(EFFECT_MAGIC_ATK_BOOST, 20, 0, 35);
-            mob:addStatusEffectEx(EFFECT_INT_BOOST, 0, 20, 0, 35);
+    if (VRTRA:hasStatusEffect(dsp.effects.BLOOD_WEAPON)) then
+        if (mob:hasStatsEffect(dsp.effects.MAGIC_ATK_BOOST) == false) then
+            mob:addStatusEffect(dsp.effects.MAGIC_ATK_BOOST, 20, 0, 35);
+            mob:addStatusEffectEx(dsp.effects.INT_BOOST, 0, 20, 0, 35);
         end
-        if (mob:hasStatsEffect(EFFECT_EVASION_BOOST) == false) then
-            mob:addStatusEffect(EFFECT_EVASION_BOOST, 35, 0, 35);
-            mob:addStatusEffectEx(EFFECT_STR_BOOST, 0, 20, 0, 35);
+        if (mob:hasStatsEffect(dsp.effects.EVASION_BOOST) == false) then
+            mob:addStatusEffect(dsp.effects.EVASION_BOOST, 35, 0, 35);
+            mob:addStatusEffectEx(dsp.effects.STR_BOOST, 0, 20, 0, 35);
         end
     end
 end

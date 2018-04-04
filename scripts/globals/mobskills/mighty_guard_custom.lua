@@ -17,8 +17,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD,0,1,0,60);
-    mob:addStatusEffect(EFFECT_REGAIN,10,3,60);
+    mob:addStatusEffectEx(dsp.effects.PHYSICAL_SHIELD,0,1,0,60);
+    mob:addStatusEffect(dsp.effects.REGAIN,10,3,60);
     skill:setMsg(msgBasic.SELF_HEAL);
     return MobHealMove(mob, mob:getMaxHP() * 0.075);
 end;

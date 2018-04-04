@@ -18,10 +18,10 @@ function onUseWeaponSkill(player, target, wsID)
 	params.atkmulti = 1;
 	local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, params);
 
-	if (damage > 0 and target:hasStatusEffect(EFFECT_SLEEP_I) == false) then
+	if (damage > 0 and target:hasStatusEffect(dsp.effects.SLEEP_I) == false) then
 		local tp = player:getTP();
 		local duration = 15+(tp/100 * 15);
-		target:addStatusEffect(EFFECT_PLAGUE, 10, 3, duration);
+		target:addStatusEffect(dsp.effects.PLAGUE, 10, 3, duration);
 	end
 
 	damage = damage * WEAPON_SKILL_POWER

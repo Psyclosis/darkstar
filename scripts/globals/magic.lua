@@ -381,8 +381,8 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
         return 0;
     end
     ]]
-    if (target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
-        if (target:getStatusEffect(EFFECT_MAGIC_SHIELD):getPower() ~= 100) then
+    if (target:hasStatusEffect(dsp.effects.MAGIC_SHIELD)) then
+        if (target:getStatusEffect(dsp.effects.MAGIC_SHIELD):getPower() ~= 100) then
             return 0;
         end
     end
@@ -1313,7 +1313,7 @@ function customResCheck(target, effect)
     elseif(effect == EFFECT_LULLABY) then
         effectRes = target:getMod(MOD_LULLABYRES);
     elseif (effect == EFFECT_POISON) then
-        if (target:hasStatusEffect(EFFECT_NEGATE_POISON)) then
+        if (target:hasStatusEffect(dsp.effects.NEGATE_POISON)) then
             return 1000;
         end
         effectRes = target:getMod(MOD_POISONRES);
@@ -1324,19 +1324,19 @@ function customResCheck(target, effect)
     elseif (effect == EFFECT_SILENCE) then
         effectRes = target:getMod(MOD_SILENCERES);
     elseif (effect == EFFECT_PLAGUE or effect == EFFECT_DISEASE) then
-        if (target:hasStatusEffect(EFFECT_NEGATE_VIRUS)) then
+        if (target:hasStatusEffect(dsp.effects.NEGATE_VIRUS)) then
             return 1000;
         end
         effectRes = target:getMod(MOD_VIRUSRES);
     elseif (effect == EFFECT_PETRIFICATION) then
-        if (target:hasStatusEffect(EFFECT_NEGATE_PETRIFY)) then
+        if (target:hasStatusEffect(dsp.effects.NEGATE_PETRIFY)) then
             return 1000;
         end
         effectRes = target:getMod(MOD_PETRIFYRES);
     elseif (effect == EFFECT_BIND) then
         effectRes = target:getMod(MOD_BINDRES);
     elseif (effect == EFFECT_CURSE_I or effect == EFFECT_CURSE_II or effect == EFFECT_BANE) then
-        if (target:hasStatusEffect(EFFECT_NEGATE_CURSE)) then
+        if (target:hasStatusEffect(dsp.effects.NEGATE_CURSE)) then
             return 1000;
         end
         effectRes = target:getMod(MOD_CURSERES);
@@ -1347,22 +1347,22 @@ function customResCheck(target, effect)
     elseif (effect == EFFECT_STUN) then
         effectRes = target:getMod(MOD_STUNRES);
     elseif (effect == EFFECT_CHARM) then
-        if (target:hasStatusEffect(EFFECT_NEGATE_CHARM)) then
+        if (target:hasStatusEffect(dsp.effects.NEGATE_CHARM)) then
             return 1000;
         end
         effectRes = target:getMod(MOD_CHARMRES);
     elseif (effect == EFFECT_AMNESIA) then
-        if (target:hasStatusEffect(EFFECT_NEGATE_AMNESIA)) then
+        if (target:hasStatusEffect(dsp.effects.NEGATE_AMNESIA)) then
             return 1000;
         end
         effectRes = target:getMod(MOD_AMNESIARES);
     elseif (effect == EFFECT_TERROR) then
-        if (target:hasStatusEffect(EFFECT_NEGATE_TERROR)) then
+        if (target:hasStatusEffect(dsp.effects.NEGATE_TERROR)) then
             return 1000;
         end
         effectRes = target:getMod(MOD_TERRORRES);
     elseif (effect == EFFECT_DOOM) then
-        if (target:hasStatusEffect(EFFECT_NEGATE_DOOM)) then
+        if (target:hasStatusEffect(dsp.effects.NEGATE_DOOM)) then
             return 1000;
         end
         effectRes = target:getMod(MOD_DOOMRES);

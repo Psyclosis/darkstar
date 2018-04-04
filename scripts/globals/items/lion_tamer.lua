@@ -19,5 +19,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_ENFIRE, 10, 0, 300);
+    target:addStatusEffect(dsp.effects.ENFIRE, 10, 0, 300);
 end;

@@ -23,7 +23,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     -- addEx to prevent dispel
-    mob:addStatusEffectEx(EFFECT_PHYSICAL_SHIELD,0,1,0,45)
+    mob:addStatusEffectEx(dsp.effects.PHYSICAL_SHIELD,0,1,0,45)
     skill:setMsg(msgBasic.BUFF)
 
     return EFFECT_PHYSICAL_SHIELD;

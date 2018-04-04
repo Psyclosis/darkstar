@@ -47,7 +47,7 @@ function onMobWeaponSkill(target, mob, skill)
 
         target:delHP(dmg);
 
-        if (target:getHPP() < 50 or target:hasStatusEffect(EFFECT_BIO)) then
+        if (target:getHPP() < 50 or target:hasStatusEffect(dsp.effects.BIO)) then
             -- If damage takes you below 50% hp or you have Bio status, you die
             skill:setMsg(20);
             target:setHP(0);

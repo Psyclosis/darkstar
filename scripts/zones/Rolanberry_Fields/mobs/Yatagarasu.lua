@@ -55,11 +55,11 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if ((math.random(1,10) < 3) or (target:hasStatusEffect(EFFECT_BLINDNESS) == true)) then
+    if ((math.random(1,10) < 3) or (target:hasStatusEffect(dsp.effects.BLINDNESS) == true)) then
         return 0,0,0;
     else
         local duration = 10;
-        target:addStatusEffect(EFFECT_BLINDNESS,40,0,duration);
+        target:addStatusEffect(dsp.effects.BLINDNESS,40,0,duration);
         return SUBEFFECT_CURSE,163,EFFECT_BLINDNESS;
     end
 end;

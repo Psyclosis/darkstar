@@ -47,15 +47,15 @@ function onEffectTick(target,effect)
 
 
     if (LastZone == 132 or LastZone == 15 or LastZone == 45 or LastZone == 215 or LastZone == 216 or LastZone == 217 or LastZone == 218 or LastZone == 253 or LastZone == 254) then
-        target:delStatusEffectSilent(EFFECT_VISITANT);	-- make sure you lose status on zone out.
-    elseif target:hasStatusEffect(EFFECT_VISITANT) then
-        target:delStatusEffectSilent(EFFECT_PREPARATIONS);
+        target:delStatusEffectSilent(dsp.effects.VISITANT);	-- make sure you lose status on zone out.
+    elseif target:hasStatusEffect(dsp.effects.VISITANT) then
+        target:delStatusEffectSilent(dsp.effects.PREPARATIONS);
     end
 
     -- print("tick",tick); -- Debug: uncomment to get a printout of the time remaining in seconds, warning this spams the log.
     -- print("abytime",abytime);
 
-    if (target:hasStatusEffect(EFFECT_PREPARATIONS) == false) then
+    if (target:hasStatusEffect(dsp.effects.PREPARATIONS) == false) then
         if (abytime == 1200) then
             target:messageSpecial(EXIT_WARNING_1,20,1,0);
         elseif (abytime == 600) then
@@ -96,9 +96,9 @@ function onEffectLose(target,effect)
     ABYSSEA_GRAUBERG   = 254;
     ----------------------------
     local Zone = target:getZone();
-    target:delStatusEffect(EFFECT_ATMA);
+    target:delStatusEffect(dsp.effects.ATMA);
 
-    if (target:hasStatusEffect(EFFECT_VISITANT) == false) then
+    if (target:hasStatusEffect(dsp.effects.VISITANT) == false) then
         if (Zone == 132) then
             target:setPos(0,0,0,0,0);
         elseif (Zone == 15) then

@@ -8,7 +8,7 @@ require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    if caster:hasStatusEffect(EFFECT_UNBRIDLED_LEARNING) then
+    if caster:hasStatusEffect(dsp.effects.UNBRIDLED_LEARNING) then
         return 0;
     else
         return chatType.STATUS_PREVENTS;
@@ -42,9 +42,9 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
     if (resist > 0.0625) then
-        target:addStatusEffect(EFFECT_ACCURACY_DOWN, 35, 0, math.random(30,60));
-        target:addStatusEffect(EFFECT_ATTACK_DOWN,   25, 0, math.random(30,60));
-        target:addStatusEffect(EFFECT_DEFENSE_DOWN,  25, 0, math.random(30,60));
+        target:addStatusEffect(dsp.effects.ACCURACY_DOWN, 35, 0, math.random(30,60));
+        target:addStatusEffect(dsp.effects.ATTACK_DOWN,   25, 0, math.random(30,60));
+        target:addStatusEffect(dsp.effects.DEFENSE_DOWN,  25, 0, math.random(30,60));
     end
 
     return damage;

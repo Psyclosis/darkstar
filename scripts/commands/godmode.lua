@@ -60,7 +60,7 @@ function onTrigger(player)
         player:delStatusEffect(dsp.effects.REGAIN);
         player:delStatusEffect(dsp.effects.REFRESH);
         player:delStatusEffect(dsp.effects.REGEN);
-        -- player:delStatusEffect(EFFECT_SJCAP_BOOST);
+        -- player:delStatusEffect(dsp.effects.SJCAP_BOOST);
 
         -- Remove bonus mods..
         player:delMod(MOD_RACC,2500);

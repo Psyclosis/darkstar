@@ -8,7 +8,7 @@ require("scripts/globals/msg");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    if (caster:hasStatusEffect(EFFECT_UNBRIDLED_LEARNING) == true) then
+    if (caster:hasStatusEffect(dsp.effects.UNBRIDLED_LEARNING) == true) then
       return 0;
     else
       return chatType.STATUS_PREVENTS;

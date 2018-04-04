@@ -58,14 +58,14 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if (target:hasStatusEffect(EFFECT_POISON)) then
-        target:delStatusEffect(EFFECT_POISON);
+    if (target:hasStatusEffect(dsp.effects.POISON)) then
+        target:delStatusEffect(dsp.effects.POISON);
     end
 
     duration = 10 * applyResistanceAddEffect(mob, target, ELE_WATER, EFFECT_POISON)
     utils.clamp(duration,1,30);
 
-    target:addStatusEffect(EFFECT_POISON, 50, 3, duration);
+    target:addStatusEffect(dsp.effects.POISON, 50, 3, duration);
     -- mob:resetEnmity(target);
 
     return SUBEFFECT_POISON, chatType.ADD_EFFECT_STATUS, EFFECT_POISON;

@@ -12,7 +12,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if (player:hasStatusEffect(EFFECT_SPONTANEITY) == true) then
+    if (player:hasStatusEffect(dsp.effects.SPONTANEITY) == true) then
         return chatType.UNABLE_TO_USE_JA,0;
     else
         return 0,0;
@@ -20,5 +20,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-    player:addStatusEffect(EFFECT_MANAWELL,1,0,60);
+    player:addStatusEffect(dsp.effects.MANAWELL,1,0,60);
 end;

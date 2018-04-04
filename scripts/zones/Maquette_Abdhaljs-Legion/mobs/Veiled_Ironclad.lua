@@ -49,7 +49,7 @@ end;
 function onMobFight(mob, target)
     local did2hr = mob:getLocalVar("did2hr");
 
-    if (mob:hasStatusEffect(EFFECT_HUNDRED_FISTS)) then
+    if (mob:hasStatusEffect(dsp.effects.HUNDRED_FISTS)) then
         mob:SetMobSkillAttack(0); -- Can't Hundred Fists w/special melee
     else
         mob:SetMobSkillAttack(4167); -- Can't Hundred Fists w/special melee

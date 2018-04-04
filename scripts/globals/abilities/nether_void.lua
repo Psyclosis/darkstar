@@ -25,5 +25,5 @@ function OnUseAbility(player, target, ability)
 		power = power + 25;
 	end
 	
-	player:addStatusEffect(EFFECT_NETHER_VOID,power,0,60);
+	player:addStatusEffect(dsp.effects.NETHER_VOID,power,0,60);
 end;

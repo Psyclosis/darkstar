@@ -20,5 +20,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	target:addStatusEffect(EFFECT_HAMANOHA,-10,0,180);
+	target:addStatusEffect(dsp.effects.HAMANOHA,-10,0,180);
 end;

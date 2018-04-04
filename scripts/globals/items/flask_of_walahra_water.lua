@@ -13,7 +13,7 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 	result = 0;
-	if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+	if (target:hasStatusEffect(dsp.effects.MEDICINE)) then
 		result = 111;
 	end
 	mHP = target:getMaxHP();
@@ -34,7 +34,7 @@ end;
 
 function onItemUse(target)
 
-	if (target:addStatusEffect(EFFECT_MEDICINE,0,0,180,5354)) then
+	if (target:addStatusEffect(dsp.effects.MEDICINE,0,0,180,5354)) then
 		target:messageBasic(205);
 		target:addHP((target:getMaxHP()/100)*5);
 		target:addMP((target:getMaxMP()/100)*5);

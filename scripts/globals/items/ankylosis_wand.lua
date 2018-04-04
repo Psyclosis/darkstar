@@ -14,10 +14,10 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-	if (target:delStatusEffect(EFFECT_BIND) == true) then
+	if (target:delStatusEffect(dsp.effects.BIND) == true) then
 		target:addMod(MOD_MACC, 20);
 		target:addMod(MOD_MATT, 20);
-	elseif (target:delStatusEffect(EFFECT_BIND) == false) then
+	elseif (target:delStatusEffect(dsp.effects.BIND) == false) then
 		target:delMod(MOD_MACC, 20);
 		target:delMod(MOD_MATT, 20);
 	end
@@ -29,6 +29,6 @@ end;
 
 function onItemUse(target)
 	local duration = 60;
-	target:delStatusEffect(EFFECT_BIND);
-	target:addStatusEffect(EFFECT_BIND,1,0,duration);
+	target:delStatusEffect(dsp.effects.BIND);
+	target:addStatusEffect(dsp.effects.BIND,1,0,duration);
 end;

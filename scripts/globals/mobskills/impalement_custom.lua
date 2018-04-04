@@ -21,7 +21,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    target:addStatusEffect(EFFECT_SLOW,128,0,120);
+    target:addStatusEffect(dsp.effects.SLOW,128,0,120);
 
     local currentHP = target:getHP();
     -- remove all by 5%

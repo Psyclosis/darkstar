@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
     params.effect = EFFECT_DROWN;
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     local multi = 2.08;
-    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(dsp.effects.AZURE_LORE)) then
         multi = multi + 0.50;
     end
     params.multiplier = multi;

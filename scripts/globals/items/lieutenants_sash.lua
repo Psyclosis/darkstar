@@ -15,7 +15,7 @@ require("scripts/globals/settings");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) ~= true) then
+    if (target:hasStatusEffect(dsp.effects.FOOD) ~= true) then
         result = 246;
     end
     return result;
@@ -26,7 +26,7 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_FOOD) == true) then
-        target:delStatusEffect(EFFECT_FOOD);
+    if (target:hasStatusEffect(dsp.effects.FOOD) == true) then
+        target:delStatusEffect(dsp.effects.FOOD);
     end
 end;

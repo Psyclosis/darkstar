@@ -13,7 +13,7 @@ function onSpellCast(caster,target,spell)
     local duration = 300;
     local power = 30;
 
-    if (target:addStatusEffect(EFFECT_ENMITY_BOOST,power,0,duration) == false) then
+    if (target:addStatusEffect(dsp.effects.ENMITY_BOOST,power,0,duration) == false) then
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
     end
 

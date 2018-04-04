@@ -73,7 +73,7 @@ function onAdditionalEffect(mob,target,damage)
     if (resist >= math.random(1,1000) or math.random(1,9) ~= 5) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_TERROR,1,0,5);
+        target:addStatusEffect(dsp.effects.TERROR,1,0,5);
         mob:resetEnmity(target);
         return SUBEFFECT_NONE,0,EFFECT_TERROR;
     end

@@ -19,5 +19,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_COSTUME,612,0,3600);
+	target:addStatusEffect(dsp.effects.COSTUME,612,0,3600);
 end;

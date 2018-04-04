@@ -53,7 +53,7 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob, target)
-    mob:delStatusEffect(EFFECT_RAGE);
+    mob:delStatusEffect(dsp.effects.RAGE);
 end;
 
 -----------------------------------
@@ -65,7 +65,7 @@ function onMobFight(mob,target)
     local bahamut_2hr = mob:getLocalVar("bahamut_2hr");
 
     if (mob:getBattleTime() > 5400 and mob:getLocalVar("RAGED") == 0) then
-        mob:addStatusEffectEx(EFFECT_RAGE,0,1,0,0);
+        mob:addStatusEffectEx(dsp.effects.RAGE,0,1,0,0);
         mob:setLocalVar("RAGED", 1);
     end
 
@@ -133,10 +133,10 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if (math.random(1,10) ~= 3 or target:hasStatusEffect(EFFECT_CURSE_I) == true) then
+    if (math.random(1,10) ~= 3 or target:hasStatusEffect(dsp.effects.CURSE_I) == true) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_CURSE_I,40,0,10);
+        target:addStatusEffect(dsp.effects.CURSE_I,40,0,10);
         mob:resetEnmity(target);
 
         return SUBEFFECT_CURSE,chatType.ADD_EFFECT_STATUS,EFFECT_CURSE_I;
@@ -148,7 +148,7 @@ end;
 -----------------------------------
 
 function onMobDrawIn(mob, target) -- Bind / Wing on Draw In
-    target:addStatusEffect(EFFECT_BIND, 1, 0, 3);
+    target:addStatusEffect(dsp.effects.BIND, 1, 0, 3);
     mob:useMobAbility(1287);
     mob:addTP(100);
 end;

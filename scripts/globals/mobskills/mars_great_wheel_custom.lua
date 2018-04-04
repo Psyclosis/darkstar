@@ -20,22 +20,22 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
 
-    if (mob:hasStatusEffect(EFFECT_ENDARK)) then
-        mob:delStatusEffectSilent(EFFECT_ENDARK);
-    elseif (mob:hasStatusEffect(EFFECT_ENWATER)) then
-        mob:delStatusEffectSilent(EFFECT_ENWATER);
-    elseif (mob:hasStatusEffect(EFFECT_ENTHUNDER)) then
-        mob:delStatusEffectSilent(EFFECT_ENTHUNDER);
-    elseif (mob:hasStatusEffect(EFFECT_ENSTONE)) then
-        mob:delStatusEffectSilent(EFFECT_ENSTONE);
-    elseif (mob:hasStatusEffect(EFFECT_ENAERO)) then
-        mob:delStatusEffectSilent(EFFECT_ENAERO);
-    elseif (mob:hasStatusEffect(EFFECT_ENBLIZZARD)) then
-        mob:delStatusEffectSilent(EFFECT_ENBLIZZARD);
-    elseif (mob:hasStatusEffect(EFFECT_ENFIRE)) then
-        mob:delStatusEffectSilent(EFFECT_ENFIRE);
+    if (mob:hasStatusEffect(dsp.effects.ENDARK)) then
+        mob:delStatusEffectSilent(dsp.effects.ENDARK);
+    elseif (mob:hasStatusEffect(dsp.effects.ENWATER)) then
+        mob:delStatusEffectSilent(dsp.effects.ENWATER);
+    elseif (mob:hasStatusEffect(dsp.effects.ENTHUNDER)) then
+        mob:delStatusEffectSilent(dsp.effects.ENTHUNDER);
+    elseif (mob:hasStatusEffect(dsp.effects.ENSTONE)) then
+        mob:delStatusEffectSilent(dsp.effects.ENSTONE);
+    elseif (mob:hasStatusEffect(dsp.effects.ENAERO)) then
+        mob:delStatusEffectSilent(dsp.effects.ENAERO);
+    elseif (mob:hasStatusEffect(dsp.effects.ENBLIZZARD)) then
+        mob:delStatusEffectSilent(dsp.effects.ENBLIZZARD);
+    elseif (mob:hasStatusEffect(dsp.effects.ENFIRE)) then
+        mob:delStatusEffectSilent(dsp.effects.ENFIRE);
     end
-    mob:addStatusEffect(EFFECT_ENDARK,65, 0, 60);
+    mob:addStatusEffect(dsp.effects.ENDARK,65, 0, 60);
     resetMusic(target)
     target:delHP(dmg);
 

@@ -11,8 +11,8 @@ require("scripts/globals/magic");
 
 function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_AUTO_SPIKES,mob:getShortID());
-    mob:addStatusEffect(EFFECT_DAMAGE_SPIKES,5,0,0);
-    mob:getStatusEffect(EFFECT_DAMAGE_SPIKES):setFlag(32);
+    mob:addStatusEffect(dsp.effects.DAMAGE_SPIKES,5,0,0);
+    mob:getStatusEffect(dsp.effects.DAMAGE_SPIKES):setFlag(32);
 
     mob:addMod(MOD_MATT,20);
     mob:addMod(MOD_MACC,400); 
@@ -27,13 +27,13 @@ function onSpikesDamage(mob,target,damage)
         return 0,0,0;
     else
         local dmg = math.random(3,9);
-        target:delStatusEffect(EFFECT_DEFENSE_BOOST)
-        if (not target:hasStatusEffect(EFFECT_DEFENSE_DOWN)) then
-            target:addStatusEffect(EFFECT_DEFENSE_DOWN, 10, 0, 20);
+        target:delStatusEffect(dsp.effects.DEFENSE_BOOST)
+        if (not target:hasStatusEffect(dsp.effects.DEFENSE_DOWN)) then
+            target:addStatusEffect(dsp.effects.DEFENSE_DOWN, 10, 0, 20);
         end
-        target:delStatusEffect(EFFECT_ATTACK_BOOST)
-        if (not target:hasStatusEffect(EFFECT_ATTACK_DOWN)) then
-            target:addStatusEffect(EFFECT_ATTACK_DOWN, 10, 0, 20);
+        target:delStatusEffect(dsp.effects.ATTACK_BOOST)
+        if (not target:hasStatusEffect(dsp.effects.ATTACK_DOWN)) then
+            target:addStatusEffect(dsp.effects.ATTACK_DOWN, 10, 0, 20);
         end
         return SUBEFFECT_DELUGE_SPIKES,44,dmg;
     end

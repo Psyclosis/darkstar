@@ -19,9 +19,9 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
     if (dmg > 0) then
-        if (mob:hasStatusEffect(EFFECT_SPIRIT_SURGE)) then
-            if (target:hasStatusEffect(EFFECT_DEFENSE_BOOST)) then
-                target:delStatusEffect(EFFECT_DEFENSE_BOOST);
+        if (mob:hasStatusEffect(dsp.effects.SPIRIT_SURGE)) then
+            if (target:hasStatusEffect(dsp.effects.DEFENSE_BOOST)) then
+                target:delStatusEffect(dsp.effects.DEFENSE_BOOST);
             end
             MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_DEFENSE_DOWN, 1, 0, 60);
             mob:addTP(2);

@@ -39,7 +39,7 @@ function onMobSpawn(mob)
     -- var
     -- mob:setLocalVar("depopTime", os.time(t) + 1800);  -- despawn in 30 min
 
-    mob:delStatusEffect(EFFECT_ALL_MISS);
+    mob:delStatusEffect(dsp.effects.ALL_MISS);
 
 end;
 
@@ -62,7 +62,7 @@ function onMobFight(mob, target)
         -- subanimation 0 is only ever used before any flight happens
         if (mob:AnimationSub() == 0 and BT - CT > 180) then
             mob:AnimationSub(1);
-            mob:addStatusEffectEx(EFFECT_ALL_MISS, 0, 1, 0, 0);
+            mob:addStatusEffectEx(dsp.effects.ALL_MISS, 0, 1, 0, 0);
             -- record the time this phase was started
             mob:setLocalVar("changeTime", mob:getBattleTime());
         -- subanimation 1 is flight, so check if she should land
@@ -72,7 +72,7 @@ function onMobFight(mob, target)
         -- subanimation 2 is grounded mode, so check if she should take off
         elseif (mob:AnimationSub() == 2 and BT - CT > 180) then
             mob:AnimationSub(1);
-            mob:addStatusEffectEx(EFFECT_ALL_MISS, 0, 1, 0, 0);
+            mob:addStatusEffectEx(dsp.effects.ALL_MISS, 0, 1, 0, 0);
             -- record the time this phase was started
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end

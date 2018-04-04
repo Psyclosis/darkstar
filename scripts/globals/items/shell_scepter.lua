@@ -21,5 +21,5 @@ end;
 -----------------------------------------
 
 function onItemUse(target)
-	target:addStatusEffect(EFFECT_COSTUME,(math.random(356,357)),0,3600);
+	target:addStatusEffect(dsp.effects.COSTUME,(math.random(356,357)),0,3600);
 end;

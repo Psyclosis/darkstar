@@ -59,10 +59,10 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if ((math.random(1,10) > 4) or (target:hasStatusEffect(EFFECT_DOOM) == true)) then
+    if ((math.random(1,10) > 4) or (target:hasStatusEffect(dsp.effects.DOOM) == true)) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_DOOM,10,3,10);
+        target:addStatusEffect(dsp.effects.DOOM,10,3,10);
     end
     return SUBEFFECT_PARALYSIS,163,EFFECT_DOOM;
 end;

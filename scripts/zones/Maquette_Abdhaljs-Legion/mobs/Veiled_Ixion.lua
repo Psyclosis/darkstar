@@ -18,8 +18,8 @@ function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_AUTO_SPIKES, 1); -- Needed for auto spikes
 
     -- Effects
-    mob:addStatusEffect(EFFECT_DAMAGE_SPIKES,5,0,0); -- Needed for auto spikes
-    mob:getStatusEffect(EFFECT_DAMAGE_SPIKES):setFlag(32); -- Make spikes undispelable.
+    mob:addStatusEffect(dsp.effects.DAMAGE_SPIKES,5,0,0); -- Needed for auto spikes
+    mob:getStatusEffect(dsp.effects.DAMAGE_SPIKES):setFlag(32); -- Make spikes undispelable.
 
     -- addMod
     mob:addMod(MOD_DOUBLE_ATTACK, 10);

@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
             player:PrintToPlayer("Well..I guess I can let you aboard the express freight Vessel.. ", chatType.SAY, npc:getName());
             player:delGil(TRAVEL_SKIP);
             -- player:setPos(-26,12,120,64,246);
-            player:addStatusEffectEx(EFFECT_COMMUTE,0,COMMUTE.AISHIP_TO_JEUNO_K,0,2);
+            player:addStatusEffectEx(dsp.effects.COMMUTE,0,COMMUTE.AISHIP_TO_JEUNO_K,0,2);
         end
     end
 end;

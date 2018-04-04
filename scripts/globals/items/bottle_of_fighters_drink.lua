@@ -13,7 +13,7 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
 result = 0;
-	if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+	if (target:hasStatusEffect(dsp.effects.MEDICINE)) then
 		result = 111;
 	end
 return result;
@@ -25,7 +25,7 @@ end;
 
 function onItemUse(target)
 
-	if (target:addStatusEffect(EFFECT_MEDICINE,0,0,60,5836)) then
+	if (target:addStatusEffect(dsp.effects.MEDICINE,0,0,60,5836)) then
 		target:messageBasic(205);
 	else
         	target:messageBasic(423); -- no effect

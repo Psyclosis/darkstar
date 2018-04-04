@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     --[[
     homepointMenu(player, 8700, 44);
     ]]
-    player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,4);
+    player:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_WARP,0,4);
 end; 
 
 

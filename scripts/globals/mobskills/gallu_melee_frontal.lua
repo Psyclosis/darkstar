@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_WIPE_SHADOWS);
 
     if (math.random(1,10) == 5) then
-        target:addStatusEffect(EFFECT_STUN, 0, 0, 1);
+        target:addStatusEffect(dsp.effects.STUN, 0, 0, 1);
     end
 
     -- skill:setMsg(msgBasic.MELEE); -- Single Target MSG

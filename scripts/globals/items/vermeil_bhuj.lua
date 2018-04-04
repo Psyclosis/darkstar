@@ -14,7 +14,7 @@ function onItemCheck(player,target)
     local mainEquip = player:getEquipID(SLOT_MAIN);
     local power = 1;
 	if (mainEquip == 18510) then
-		target:addStatusEffect(EFFECT_AMNESIA,power,30);
+		target:addStatusEffect(dsp.effects.AMNESIA,power,30);
 	
 	end
 	

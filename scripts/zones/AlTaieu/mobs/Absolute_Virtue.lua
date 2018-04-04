@@ -7,7 +7,7 @@ require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/magic");
 require("scripts/globals/utils");
-require("scripts/globals/spoofchat");
+require("scripts/globals/msg");
 
 -- Ability ID definitions.
 local abilityList =
@@ -107,7 +107,7 @@ function onMobEngaged(mob, target)
 end;
 
 function onMobDisEngage(mob, target)
-    mob:delStatusEffect(EFFECT_RAGE);
+    mob:delStatusEffect(dsp.effects.RAGE);
 end;
 
 function onMobFight(mob, target)
@@ -180,11 +180,11 @@ function doAbility(mob, target)
         if (mob:hasPet()) then
             for WynavID = mob:getID()+1, mob:getID()+4 do
                 if (GetMobByID(WynavID):isAlive()) then
-                    WynavID:addStatusEffect(EFFECT_MAX_HP_BOOST,10,0,0);
-                    WynavID:addStatusEffect(EFFECT_ACCURACY_BOOST,10,0,0);
-                    WynavID:addStatusEffect(EFFECT_ATTACK_BOOST,10,0,0);
-                    WynavID:addStatusEffect(EFFECT_EVASION_BOOST,10,0,0);
-                    WynavID:addStatusEffect(EFFECT_DEFENSE_BOOST,10,0,0);
+                    WynavID:addStatusEffect(dsp.effects.MAX_HP_BOOST,10,0,0);
+                    WynavID:addStatusEffect(dsp.effects.ACCURACY_BOOST,10,0,0);
+                    WynavID:addStatusEffect(dsp.effects.ATTACK_BOOST,10,0,0);
+                    WynavID:addStatusEffect(dsp.effects.EVASION_BOOST,10,0,0);
+                    WynavID:addStatusEffect(dsp.effects.DEFENSE_BOOST,10,0,0);
                 end
             end
             mob:useMobAbility(abilityID);
@@ -259,11 +259,11 @@ function doCombo(mob, target, selectCombo)
             if (mob:hasPet()) then
                 for WynavID = mob:getID()+1, mob:getID()+4 do
                     if (GetMobByID(WynavID):isAlive()) then
-                        GetMobByID(WynavID):addStatusEffect(EFFECT_MAX_HP_BOOST,10,0,0);
-                        GetMobByID(WynavID):addStatusEffect(EFFECT_ACCURACY_BOOST,10,0,0);
-                        GetMobByID(WynavID):addStatusEffect(EFFECT_ATTACK_BOOST,10,0,0);
-                        GetMobByID(WynavID):addStatusEffect(EFFECT_EVASION_BOOST,10,0,0);
-                        GetMobByID(WynavID):addStatusEffect(EFFECT_DEFENSE_BOOST,10,0,0);
+                        GetMobByID(WynavID):addStatusEffect(dsp.effects.MAX_HP_BOOST,10,0,0);
+                        GetMobByID(WynavID):addStatusEffect(dsp.effects.ACCURACY_BOOST,10,0,0);
+                        GetMobByID(WynavID):addStatusEffect(dsp.effects.ATTACK_BOOST,10,0,0);
+                        GetMobByID(WynavID):addStatusEffect(dsp.effects.EVASION_BOOST,10,0,0);
+                        GetMobByID(WynavID):addStatusEffect(dsp.effects.DEFENSE_BOOST,10,0,0);
                     end
                 end
                 mob:useMobAbility(Familiar);
@@ -310,13 +310,13 @@ function onMonsterMagicPrepare(caster, target)
         [9] = 466  -- Maidens Virelai
     }
     local spell = spellList[math.random(1,9)];
-    if (caster:hasStatusEffect(EFFECT_Manafont)) then
+    if (caster:hasStatusEffect(dsp.effects.Manafont)) then
         if (math.random(1,5) ~= 3) then
             return 218; -- Almost always Meteor
         else
             return 219; -- 1 in 5 chance of Comet
         end
-    elseif (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+    elseif (caster:hasStatusEffect(dsp.effects.SOUL_VOICE)) then
         return 466; -- Always Virelai
     else
         return spell;
@@ -338,10 +338,10 @@ function onMagicHit(caster, target, spell)
 end;
 
 function onAdditionalEffect(mob,target,damage)
-    if (math.random(1,15) ~= 5 or target:hasStatusEffect(EFFECT_TERROR) == true) then
+    if (math.random(1,15) ~= 5 or target:hasStatusEffect(dsp.effects.TERROR) == true) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_TERROR,1,0,5);
+        target:addStatusEffect(dsp.effects.TERROR,1,0,5);
         return SUBEFFECT_NONE,0,EFFECT_TERROR;
     end
 end;

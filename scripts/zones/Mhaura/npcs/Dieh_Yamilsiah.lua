@@ -21,11 +21,11 @@ function onTrade(player,npc,trade)
             if (player:hasKeyItem(BOARDING_PERMIT) and (1152 - ((os.time() - 1009810802)%1152) >= 576)) then
                 player:delGil(TRAVEL_SKIP);
                 -- player:setPos(-11,2,-142,192,50);
-                player:addStatusEffectEx(EFFECT_COMMUTE,0,COMMUTE.SHIP_TO_WHITEGATE_M,0,2);
+                player:addStatusEffectEx(dsp.effects.COMMUTE,0,COMMUTE.SHIP_TO_WHITEGATE_M,0,2);
             else
                 player:delGil(TRAVEL_SKIP);
                 -- player:setPos(22,-2,-47,194,248);
-                player:addStatusEffectEx(EFFECT_COMMUTE,0,COMMUTE.SHIP_TO_SELBINA,0,2);
+                player:addStatusEffectEx(dsp.effects.COMMUTE,0,COMMUTE.SHIP_TO_SELBINA,0,2);
             end
         end
     end

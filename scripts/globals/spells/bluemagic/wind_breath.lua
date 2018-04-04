@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
 
     local resist = applyResistance(caster, target, spell, params);
 
-    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(dsp.effects.AZURE_LORE)) then
         multi = multi + 0.50;
     end
 

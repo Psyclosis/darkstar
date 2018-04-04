@@ -10,9 +10,9 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    target:delStatusEffect(EFFECT_SUBTLE_BLOW_PLUS);
+    target:delStatusEffect(dsp.effects.SUBTLE_BLOW_PLUS);
     -- The power is unknown.
-    target:addStatusEffect(EFFECT_SUBTLE_BLOW_PLUS,EFFECT_SUBTLE_BLOW_PLUS,10,0,180);
+    target:addStatusEffect(dsp.effects.SUBTLE_BLOW_PLUS,EFFECT_SUBTLE_BLOW_PLUS,10,0,180);
     spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
 
     return EFFECT_SUBTLE_BLOW_PLUS;

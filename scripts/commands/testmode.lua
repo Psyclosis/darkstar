@@ -14,30 +14,30 @@ cmdprops =
 function onTrigger(player, toggle)
     if (toggle == "off") then
         -- Remove bonus effects..
-        player:delStatusEffect(EFFECT_MAX_HP_BOOST);
-        player:delStatusEffect(EFFECT_MAX_MP_BOOST);
-        player:delStatusEffect(EFFECT_REGAIN);
-        player:delStatusEffect(EFFECT_REFRESH);
-        player:delStatusEffect(EFFECT_REGEN);
-        player:delStatusEffect(EFFECT_AQUAVEIL);
-        player:delStatusEffect(EFFECT_NEGATE_PETRIFY,1,0,0);
-        player:delStatusEffect(EFFECT_NEGATE_TERROR,1,0,0);
-        player:delStatusEffect(EFFECT_NEGATE_AMNESIA,1,0,0);
-        player:delStatusEffect(EFFECT_NEGATE_DOOM,1,0,0);
-        player:delStatusEffect(EFFECT_NEGATE_POISON,1,0,0);
+        player:delStatusEffect(dsp.effects.MAX_HP_BOOST);
+        player:delStatusEffect(dsp.effects.MAX_MP_BOOST);
+        player:delStatusEffect(dsp.effects.REGAIN);
+        player:delStatusEffect(dsp.effects.REFRESH);
+        player:delStatusEffect(dsp.effects.REGEN);
+        player:delStatusEffect(dsp.effects.AQUAVEIL);
+        player:delStatusEffect(dsp.effects.NEGATE_PETRIFY,1,0,0);
+        player:delStatusEffect(dsp.effects.NEGATE_TERROR,1,0,0);
+        player:delStatusEffect(dsp.effects.NEGATE_AMNESIA,1,0,0);
+        player:delStatusEffect(dsp.effects.NEGATE_DOOM,1,0,0);
+        player:delStatusEffect(dsp.effects.NEGATE_POISON,1,0,0);
     elseif (toggle == "on") then
         -- Add bonus effects to the player..
-        player:addStatusEffect(EFFECT_MAX_HP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_MAX_MP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_REGAIN,150,1,0);
-        player:addStatusEffect(EFFECT_REFRESH,250,0,0);
-        player:addStatusEffect(EFFECT_REGEN,250,0,0);
-        player:addStatusEffect(EFFECT_AQUAVEIL,75,0,0);
-        player:addStatusEffect(EFFECT_NEGATE_PETRIFY,1,0,0);
-        player:addStatusEffect(EFFECT_NEGATE_TERROR,1,0,0);
-        player:addStatusEffect(EFFECT_NEGATE_AMNESIA,1,0,0);
-        player:addStatusEffect(EFFECT_NEGATE_DOOM,1,0,0);
-        player:addStatusEffect(EFFECT_NEGATE_POISON,1,0,0);
+        player:addStatusEffect(dsp.effects.MAX_HP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effects.MAX_MP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effects.REGAIN,150,1,0);
+        player:addStatusEffect(dsp.effects.REFRESH,250,0,0);
+        player:addStatusEffect(dsp.effects.REGEN,250,0,0);
+        player:addStatusEffect(dsp.effects.AQUAVEIL,75,0,0);
+        player:addStatusEffect(dsp.effects.NEGATE_PETRIFY,1,0,0);
+        player:addStatusEffect(dsp.effects.NEGATE_TERROR,1,0,0);
+        player:addStatusEffect(dsp.effects.NEGATE_AMNESIA,1,0,0);
+        player:addStatusEffect(dsp.effects.NEGATE_DOOM,1,0,0);
+        player:addStatusEffect(dsp.effects.NEGATE_POISON,1,0,0);
 
         -- Heal the player from the new buffs..
         player:addHP(9999);

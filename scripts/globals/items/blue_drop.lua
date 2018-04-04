@@ -12,7 +12,7 @@ function onItemCheck(target)
         return msgBasic.ITEM_NO_USE_MEDICATED;
     end
     ]]
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effects.FOOD) == true or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD) == true) then
         return 246;
     end
     return 0;
@@ -23,7 +23,7 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effects.MND_BOOST,5,0,900);
     target:addStatusEffect(dsp.effects.MEDICINE,0,0,3600);
     ]]
-    target:addStatusEffect(EFFECT_FOOD,0,0,2700,4263);
+    target:addStatusEffect(dsp.effects.FOOD,0,0,2700,4263);
 end;
 
 ----------------------------------------

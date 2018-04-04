@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
 
     if (math.random(1,10) == 5) then
-        target:addStatusEffect(EFFECT_BIND, 10, 0, 5);
+        target:addStatusEffect(dsp.effects.BIND, 10, 0, 5);
     end
 
     -- skill:setMsg(msgBasic.MELEE); -- Single Target MSG

@@ -38,11 +38,11 @@ function onMobSpawn(mob)
     -- Other
     mob:SetMobSkillAttack(0); -- resetting so it doesn't respawn in flight mode.
     mob:AnimationSub(0); -- subanim 0 is only used when it spawns until first flight.
-    mob:delStatusEffect(EFFECT_ALL_MISS);
+    mob:delStatusEffect(dsp.effects.ALL_MISS);
 end;
 
 function onMobEngaged(mob, target)
-    mob:delStatusEffect(EFFECT_RAGE);
+    mob:delStatusEffect(dsp.effects.RAGE);
 end;
 
 function onMobFight(mob,target)
@@ -95,21 +95,21 @@ function onMobFight(mob,target)
     -- Begin Legion Custom Block
 --[[
     elseif (mob:getLocalVar("Tia_Boosted") == 0) then
-        if (mob:getHPP() <= 20 and mob:hasStatusEffect(EFFECT_MIGHTY_STRIKES)) then
+        if (mob:getHPP() <= 20 and mob:hasStatusEffect(dsp.effects.MIGHTY_STRIKES)) then
             mob:setLocalVar("Tia_Boosted", 1);
             mob:addMod(MOD_REGAIN, 10);
             mob:addMod(MOD_DOUBLE_ATTACK, 15);
-            mob:addStatusEffect(EFFECT_HASTE,100,0,100);
-            mob:getStatusEffect(EFFECT_HASTE):setFlag(32);
-            mob:addStatusEffect(EFFECT_ATTACK_BOOST,75,0,0);
-            mob:getStatusEffect(EFFECT_ATTACK_BOOST):setFlag(32);
+            mob:addStatusEffect(dsp.effects.HASTE,100,0,100);
+            mob:getStatusEffect(dsp.effects.HASTE):setFlag(32);
+            mob:addStatusEffect(dsp.effects.ATTACK_BOOST,75,0,0);
+            mob:getStatusEffect(dsp.effects.ATTACK_BOOST):setFlag(32);
         end
     -- End Legion Custom Block
     -----------------------------
     end;
 
     if (mob:getBattleTime() > 3600 and mob:getLocalVar("RAGED") == 0) then
-        mob:addStatusEffectEx(EFFECT_RAGE,0,1,0,0);
+        mob:addStatusEffectEx(dsp.effects.RAGE,0,1,0,0);
         mob:setLocalVar("RAGED", 1);
 ]]
     end;
@@ -163,7 +163,7 @@ function onAdditionalEffect(mob,target,damage)
 end;
 
 function onMobDrawIn(mob, target)
-    target:addStatusEffect(EFFECT_BIND, 1, 0, 3);
+    target:addStatusEffect(dsp.effects.BIND, 1, 0, 3);
     mob:useMobAbility(1279);
     mob:addTP(100);
 end;

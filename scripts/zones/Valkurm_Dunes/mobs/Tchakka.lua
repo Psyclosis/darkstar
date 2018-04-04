@@ -50,7 +50,7 @@ end;
 -----------------------------------
 
 function onMobDisEngage(mob, target)
-    mob:delStatusEffect(EFFECT_RAGE);
+    mob:delStatusEffect(dsp.effects.RAGE);
 end;
 
 -----------------------------------
@@ -62,7 +62,7 @@ function onMobFight(mob, target)
     local BattleStart = mob:getLocalVar("BattleStart");
 
     if (os.time() -BattleStart > 3600 and mob:getLocalVar("RAGED") == 0) then
-        mob:addStatusEffectEx(EFFECT_RAGE,0,1,0,0);
+        mob:addStatusEffectEx(dsp.effects.RAGE,0,1,0,0);
         mob:setLocalVar("RAGED", 1);
     end
 end;

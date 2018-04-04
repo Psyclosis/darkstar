@@ -34,7 +34,7 @@ function onMobWeaponSkill(target, mob, skill)
             dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
             if (dmg > 0) then
-                if (mob:hasStatusEffect(EFFECT_SPIRIT_SURGE)) then
+                if (mob:hasStatusEffect(dsp.effects.SPIRIT_SURGE)) then
                     mob:resetEnmity(target);
                     mob:addTP(3);
                 end

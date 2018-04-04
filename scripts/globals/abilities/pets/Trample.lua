@@ -20,7 +20,7 @@ function onPetAbility(target, pet, skill)
 	local damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,0,TP_NO_EFFECT,1,2,3);
 	local finalDamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,numhits);
 
-	target:addStatusEffect(EFFECT_PARALYSIS, 22.5, 0, 90);
+	target:addStatusEffect(dsp.effects.PARALYSIS, 22.5, 0, 90);
 	target:delHP(finalDamage);
 	target:updateEnmityFromDamage(pet,finalDamage);
 

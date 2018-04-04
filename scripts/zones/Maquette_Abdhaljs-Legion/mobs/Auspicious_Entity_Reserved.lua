@@ -57,7 +57,7 @@ end;
 function onMobDeath(mob, player, isKiller)
     if (isKiller == true) then
         local mobID = mob:getID();
-        -- local duration = player:getStatusEffect(EFFECT_LEGION):getDuration();
+        -- local duration = player:getStatusEffect(dsp.effects.LEGION):getDuration();
 
         if (mobID == 17526873) then -- Hall of An : TE
             -- Add +15min
@@ -80,7 +80,7 @@ function onMobDeath(mob, player, isKiller)
             -- Add +15min
             -- player:addTimeToDynamis(15);
         elseif (mobID == 17526879) then -- Hall of Mul : Restore
-            player:delStatusEffect(EFFECT_WEAKNESS);
+            player:delStatusEffect(dsp.effects.WEAKNESS);
             player:restoreHP(3000);
             player:messageBasic(024,(player:getMaxHP()-player:getHP()));
             player:restoreMP(3000);

@@ -42,11 +42,11 @@ end;
 -- onAdditionalEffect Action
 -----------------------------------
 function onAdditionalEffect(mob,target,damage)
-    if ((math.random(1,10) ~= 3) or (target:hasStatusEffect(EFFECT_DOOM) == true)) then
+    if ((math.random(1,10) ~= 3) or (target:hasStatusEffect(dsp.effects.DOOM) == true)) then
         return 0,0,0;
     else
         local duration = 10;
-        target:addStatusEffect(EFFECT_DOOM,1,0,duration);
+        target:addStatusEffect(dsp.effects.DOOM,1,0,duration);
         mob:resetEnmity(target);
         return SUBEFFECT_NONE,0,EFFECT_DOOM;
     end

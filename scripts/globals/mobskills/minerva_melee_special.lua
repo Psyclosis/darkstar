@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
 
     if (math.random(1,10) == 5) then -- 1 in 10 chance of 1 second stun just to interrupt spells.
-        target:addStatusEffect(EFFECT_STUN, 0, 0, 1);
+        target:addStatusEffect(dsp.effects.STUN, 0, 0, 1);
     end
 
     skill:setMsg(264)

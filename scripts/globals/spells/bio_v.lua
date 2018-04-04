@@ -39,21 +39,21 @@ function onSpellCast(caster,target,spell)
     local duration = 150;
 
     -- Check for Dia.
-    local dia = target:getStatusEffect(EFFECT_DIA);
+    local dia = target:getStatusEffect(dsp.effects.DIA);
 
     -- Calculate DoT (rough, though fairly accurate)
     local dotdmg = 6 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
 
     -- Do it!
     if (dia == nil or (BIO_OVERWRITE == 0 and dia:getPower() <= 5) or (BIO_OVERWRITE == 1 and dia:getPower() < 5)) then
-        target:delStatusEffect(EFFECT_BIO); -- delete old bio
-        target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE,20);
+        target:delStatusEffect(dsp.effects.BIO); -- delete old bio
+        target:addStatusEffect(dsp.effects.BIO,dotdmg,3,duration,FLAG_ERASABLE,20);
     end
 
     --Try to kill same tier Dia (default behavior)
     if (DIA_OVERWRITE == 1 and dia ~= nil) then
         if (dia:getPower() <= 5) then
-            target:delStatusEffect(EFFECT_DIA);
+            target:delStatusEffect(dsp.effects.DIA);
         end
     end
 

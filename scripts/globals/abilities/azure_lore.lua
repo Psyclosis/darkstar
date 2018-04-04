@@ -13,5 +13,5 @@ end;
 
 function OnUseAbility(player, target, ability)
 	--print();
-	player:addStatusEffect(EFFECT_AZURE_LORE,1,0,30);
+	player:addStatusEffect(dsp.effects.AZURE_LORE,1,0,30);
 end;

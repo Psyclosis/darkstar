@@ -17,5 +17,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_PALISADE,1,0,60);
+	player:addStatusEffect(dsp.effects.PALISADE,1,0,60);
 end;

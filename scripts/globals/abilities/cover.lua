@@ -34,8 +34,8 @@ function onUseAbility(player,target,ability)
 	ability:setMsg(0);
 	duration = 60 + player:getMerit(MERIT_COVER_EFFECT_LENGTH);
 	if (target ~= player) thenz
-		target:addStatusEffect(EFFECT_COVER,1,0,duration);
-		cover = target:getStatusEffect(EFFECT_COVER);
+		target:addStatusEffect(dsp.effects.COVER,1,0,duration);
+		cover = target:getStatusEffect(dsp.effects.COVER);
 		cover:setEffector(player);
 	end
     ]]

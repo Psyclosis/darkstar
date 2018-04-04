@@ -47,11 +47,11 @@ end;
 -- onAdditionalEffect Action
 -----------------------------------
 function onAdditionalEffect(mob,target,damage)
-    if ((math.random(1,10) ~= 5) or (target:hasStatusEffect(EFFECT_PLAGUE) == true)) then
+    if ((math.random(1,10) ~= 5) or (target:hasStatusEffect(dsp.effects.PLAGUE) == true)) then
         return 0,0,0;
     else
         local duration = 30;
-        target:addStatusEffect(EFFECT_PLAGUE,1,0,duration);
+        target:addStatusEffect(dsp.effects.PLAGUE,1,0,duration);
         mob:resetEnmity(target);
         return SUBEFFECT_PLAGUE,0,EFFECT_PLAGUE;
     end

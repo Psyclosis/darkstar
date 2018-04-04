@@ -42,7 +42,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobEngaged(mob, target)
-    mob:delStatusEffect(EFFECT_RAGE);
+    mob:delStatusEffect(dsp.effects.RAGE);
     mob:resetLocalVars();
 end;
 
@@ -99,7 +99,7 @@ function onMobFight(mob, target)
         end
 
     	if (mob:getBattleTime() > 3600 and mob:getLocalVar("RAGED") == 0) then
-        	mob:addStatusEffectEx(EFFECT_RAGE,0,1,0,0);
+        	mob:addStatusEffectEx(dsp.effects.RAGE,0,1,0,0);
         	mob:setLocalVar("RAGED", 1);
 	    end
     -- End Legion Custom Block
@@ -116,16 +116,16 @@ function onSpellPrecast(mob, spell)
 end;
 
 function onAdditionalEffect(mob,target,damage)
-    if (math.random(1,10) > 4 or target:hasStatusEffect(EFFECT_CURSE_I)) then
+    if (math.random(1,10) > 4 or target:hasStatusEffect(dsp.effects.CURSE_I)) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_CURSE_I,40,0,10);
+        target:addStatusEffect(dsp.effects.CURSE_I,40,0,10);
         return SUBEFFECT_CURSE,chatType.ADD_EFFECT_STATUS,EFFECT_CURSE_I;
     end
 end;
 
 function onMobDrawIn(mob, target)
-    target:addStatusEffect(EFFECT_BIND, 1, 0, 3);
+    target:addStatusEffect(dsp.effects.BIND, 1, 0, 3);
     mob:useMobAbility(1053);
     mob:addTP(100);
 end;

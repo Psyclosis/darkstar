@@ -14,8 +14,8 @@ function onMobInitialize(mob)
     mob:setMobMod(MOBMOD_DRAW_IN, 1); -- 1=Single target Draw In, 2=Alliance Draw in
     mob:setMobMod(MOBMOD_ADD_EFFECT, 1); -- Give additional effect on melee
     mob:setMobMod(MOBMOD_AUTO_SPIKES, 1); -- Give Auto spikes
-    mob:addStatusEffect(EFFECT_DELUGE_SPIKES, 20, 0, 0); -- Needed for auto spikes to fire off
-    mob:getStatusEffect(EFFECT_DELUGE_SPIKES):setFlag(32); -- Can't dispel spikes
+    mob:addStatusEffect(dsp.effects.DELUGE_SPIKES, 20, 0, 0); -- Needed for auto spikes to fire off
+    mob:getStatusEffect(dsp.effects.DELUGE_SPIKES):setFlag(32); -- Can't dispel spikes
 
     -- addMod
     mob:addMod(MOD_ATT, 80);
@@ -160,16 +160,16 @@ function onMobFight(mob, target)
         mob:setLocalVar("wasTerror", 0);
         mob:setLocalVar("wasStun", 0); -- Also clear stun var, if both were set.
         mob:addTP(1440); -- You really do not want to terror this crab, lulz.
-    elseif (mob:hasStatusEffect(EFFECT_TERROR)) then
+    elseif (mob:hasStatusEffect(dsp.effects.TERROR)) then
         mob:setLocalVar("wasTerror", 1);
-        mob:delStatusEffect(EFFECT_TERROR);
+        mob:delStatusEffect(dsp.effects.TERROR);
     elseif (mob:getLocalVar("wasStun") == 1) then
         mob:useMobAbility(44); -- Crab_Head_butt (stun you right back!)
         mob:setLocalVar("wasStun", 0);
         mob:addTP(880); -- Angry crab smash puny players who try and stunlock.
-    elseif (mob:hasStatusEffect(EFFECT_STUN)) then
+    elseif (mob:hasStatusEffect(dsp.effects.STUN)) then
         mob:setLocalVar("wasStun", 1);
-        mob:delStatusEffect(EFFECT_STUN);
+        mob:delStatusEffect(dsp.effects.STUN);
     end
 end;
 
@@ -345,7 +345,7 @@ function onSpikesDamage(mob, target, damage)
 end;
 
 function onMobDrawIn(mob, target)
-    target:addStatusEffect(EFFECT_BIND, 1, 0, 3);
+    target:addStatusEffect(dsp.effects.BIND, 1, 0, 3);
     mob:useMobAbility(1181); -- Crab_Jump_4
     mob:addTP(100);
 end;

@@ -83,13 +83,13 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if (target:hasStatusEffect(EFFECT_POISON)) then
-        target:delStatusEffect(EFFECT_POISON);
+    if (target:hasStatusEffect(dsp.effects.POISON)) then
+        target:delStatusEffect(dsp.effects.POISON);
     end
 
     duration = 30 * applyResistanceAddEffect(mob, target, ELE_WATER, EFFECT_POISON)
     utils.clamp(duration,1,30);
-    target:addStatusEffect(EFFECT_POISON, 100, 3, duration);
+    target:addStatusEffect(dsp.effects.POISON, 100, 3, duration);
 
     return SUBEFFECT_POISON, 160, EFFECT_POISON;
 end;

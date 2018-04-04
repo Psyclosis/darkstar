@@ -16,10 +16,10 @@ function onTrigger(player,target)
 
     local targ = GetPlayerByName(target);
     if (targ ~= nil) then
-        if (targ:hasStatusEffect(EFFECT_SJCAP_BOOST)) then
-            targ:delStatusEffect(EFFECT_SJCAP_BOOST);
+        if (targ:hasStatusEffect(dsp.effects.SJCAP_BOOST)) then
+            targ:delStatusEffect(dsp.effects.SJCAP_BOOST);
         else
-            targ:addStatusEffectEx(EFFECT_SJCAP_BOOST,EFFECT_TRANSCENDENCY,1,0,0);
+            targ:addStatusEffectEx(dsp.effects.SJCAP_BOOST,EFFECT_TRANSCENDENCY,1,0,0);
         end
     else
         player:PrintToPlayer( string.format( "Player named '%s' not found!", target ) );

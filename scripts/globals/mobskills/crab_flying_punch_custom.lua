@@ -9,8 +9,8 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(EFFECT_ELEMENTAL_SFORZO)
-    or mob:hasStatusEffect(EFFECT_SPIRIT_SURGE)
+    if (mob:hasStatusEffect(dsp.effects.ELEMENTAL_SFORZO)
+    or mob:hasStatusEffect(dsp.effects.SPIRIT_SURGE)
     or mob:getLocalVar("wasMeritWS") == 1
     or mob:getLocalVar("wasTerror") == 1) then
         return 0;

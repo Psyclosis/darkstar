@@ -53,7 +53,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local SHADOWCOUNT = math.random(10,14);
-    mob:addStatusEffect(EFFECT_BLINK, SHADOWCOUNT, 0, 0);
+    mob:addStatusEffect(dsp.effects.BLINK, SHADOWCOUNT, 0, 0);
 end;
 
 -----------------------------------

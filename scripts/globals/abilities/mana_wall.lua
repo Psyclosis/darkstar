@@ -15,5 +15,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function OnUseAbility(player, target, ability)
-	player:addStatusEffect(EFFECT_MANA_WALL,1,0,300);
+	player:addStatusEffect(dsp.effects.MANA_WALL,1,0,300);
 end;

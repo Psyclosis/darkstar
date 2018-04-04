@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
             if (player:hasKeyItem(AIRSHIP_PASS_FOR_KAZHAM)) then
                 player:delGil(TRAVEL_SKIP);
                 -- player:setPos(-9,-4,-1,65,250);
-                player:addStatusEffectEx(EFFECT_COMMUTE,0,COMMUTE.AISHIP_TO_KAZHAM,0,2);
+                player:addStatusEffectEx(dsp.effects.COMMUTE,0,COMMUTE.AISHIP_TO_KAZHAM,0,2);
             else
                 player:setVar("HasDoorHacked", player:getVar("HasDoorHacked") +1);
                 print(player:getName() .. " tried to TRAVEL_SKIP to Kazham but didn't have a Kazham Pass..");

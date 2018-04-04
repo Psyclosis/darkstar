@@ -8,7 +8,7 @@ require("scripts/globals/titles");
 function onMobSpawn(mob)
     mob:SetMobSkillAttack(0); -- resetting so it doesn't respawn in flight mode.
     mob:AnimationSub(0); -- subanim 0 is only used when it spawns until first flight.
-    mob:delStatusEffect(EFFECT_ALL_MISS);
+    mob:delStatusEffect(dsp.effects.ALL_MISS);
 end;
 
 function onMobFight(mob,target)

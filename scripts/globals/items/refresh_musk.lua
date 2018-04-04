@@ -22,6 +22,6 @@ end;
 
 function onItemUse(target)
 	local duration = 60;
-	target:delStatusEffect(EFFECT_REFRESH);
-	target:addStatusEffect(EFFECT_REFRESH,3,1,duration);
+	target:delStatusEffect(dsp.effects.REFRESH);
+	target:addStatusEffect(dsp.effects.REFRESH,3,1,duration);
 end;

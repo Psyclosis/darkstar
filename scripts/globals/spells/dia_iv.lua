@@ -34,17 +34,17 @@ function onSpellCast(caster,target,spell)
     local duration = 90;
     local dotBonus = 0;
 
-    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
         duration = duration * 2;
-        caster:delStatusEffect(EFFECT_SABOTEUR);
+        caster:delStatusEffect(dsp.effects.SABOTEUR);
     end
 
     -- Check for Bio.
-    local bio = target:getStatusEffect(EFFECT_BIO);
+    local bio = target:getStatusEffect(dsp.effects.BIO);
 
     -- Do it!
     if (bio == nil or (DIA_OVERWRITE == 0 and bio:getPower() <= 4) or (DIA_OVERWRITE == 1 and bio:getPower() < 4)) then
-        target:addStatusEffect(EFFECT_DIA,4+dotBonus,3,duration,FLAG_ERASABLE,20);
+        target:addStatusEffect(dsp.effects.DIA,4+dotBonus,3,duration,FLAG_ERASABLE,20);
         spell:setMsg(msgBasic.MAGIC_DMG);
     else
         spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
@@ -53,7 +53,7 @@ function onSpellCast(caster,target,spell)
     -- Try to kill same tier Bio
     if (BIO_OVERWRITE == 1 and bio ~= nil) then
         if (bio:getPower() <= 4) then
-            target:delStatusEffect(EFFECT_BIO);
+            target:delStatusEffect(dsp.effects.BIO);
         end
     end
 

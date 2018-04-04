@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dot = 25;
     local attackDown = 25;
     MobStatusEffectMove(mob, target, EFFECT_TERROR, 1, 0, 30);
-    target:addStatusEffect(EFFECT_BIO, dot, 3, 60, attackDown); -- MobStatusEffectMove doesn't have a subpower field, and Bio effect doesn't get resisted anyway..
+    target:addStatusEffect(dsp.effects.BIO, dot, 3, 60, attackDown); -- MobStatusEffectMove doesn't have a subpower field, and Bio effect doesn't get resisted anyway..
     skill:setMsg(MobStatusEffectMove(mob, target, EFFECT_CURSE_I, zombieCurse, 0, 60)); -- Using wrong effect because EFFECT_CURSE_II aka "zombie" doesn't exist yet.
 
     return typeEffect;

@@ -1097,12 +1097,12 @@ function applyATMA(player, pwr)
 
         player:setVar("ACTIVE_ATMA_COUNT", player:getVar("ACTIVE_ATMA_COUNT") +1);
 
-        if (player:hasStatusEffect(EFFECT_ATMA_2)) then
-            player:addStatusEffectEx(EFFECT_ATMA_3, EFFECT_ATMA, pwr, tick, 0); -- Duration zero should be infinite, effect will be lost on zone/dc/logout.
-        elseif (player:hasStatusEffect(EFFECT_ATMA)) then
-            player:addStatusEffectEx(EFFECT_ATMA_2, EFFECT_ATMA, pwr, tick, 0); -- Duration zero should be infinite, effect will be lost on zone/dc/logout.
+        if (player:hasStatusEffect(dsp.effects.ATMA_2)) then
+            player:addStatusEffectEx(dsp.effects.ATMA_3, EFFECT_ATMA, pwr, tick, 0); -- Duration zero should be infinite, effect will be lost on zone/dc/logout.
+        elseif (player:hasStatusEffect(dsp.effects.ATMA)) then
+            player:addStatusEffectEx(dsp.effects.ATMA_2, EFFECT_ATMA, pwr, tick, 0); -- Duration zero should be infinite, effect will be lost on zone/dc/logout.
         else
-            player:addStatusEffect(EFFECT_ATMA, pwr, tick, 0); -- Duration zero should be infinite, effect will be lost on zone/dc/logout.
+            player:addStatusEffect(dsp.effects.ATMA, pwr, tick, 0); -- Duration zero should be infinite, effect will be lost on zone/dc/logout.
         end
     else
         player:PrintToPlayer("Can't apply that ATMA, key item not found.")
@@ -1114,14 +1114,14 @@ end;
 -- Remove ALL ATMA effects
 ----------------------------------
 function removeATMA(player)
-    if (player:hasStatusEffect(EFFECT_ATMA_3)) then
-        player:delStatusEffect(EFFECT_ATMA_3);
+    if (player:hasStatusEffect(dsp.effects.ATMA_3)) then
+        player:delStatusEffect(dsp.effects.ATMA_3);
     end
-    if (player:hasStatusEffect(EFFECT_ATMA_2)) then
-        player:delStatusEffect(EFFECT_ATMA_2);
+    if (player:hasStatusEffect(dsp.effects.ATMA_2)) then
+        player:delStatusEffect(dsp.effects.ATMA_2);
     end
-    if (player:hasStatusEffect(EFFECT_ATMA)) then
-        player:delStatusEffect(EFFECT_ATMA);
+    if (player:hasStatusEffect(dsp.effects.ATMA)) then
+        player:delStatusEffect(dsp.effects.ATMA);
     end
     player:setVar("ACTIVE_ATMA_COUNT", 0);
     -- This line only needed if using single effect with the duplicates allowed flag. Commented out now that I am using 2 dummy effects.

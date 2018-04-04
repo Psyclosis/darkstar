@@ -33,19 +33,19 @@ function OnUseAbility(player, target, ability)
 		ability:setMsg(125);
 		if (mobJob == 3 or mobJob == 4 or mobJob == 5 or mobJob == 10 or mobJob == 15 or mobJob == 16) then
 			if (statusEffectMagic == 1) then
-				if (target:addStatusEffect(EFFECT_MAGIC_DEF_DOWN,25,0,30)) then
+				if (target:addStatusEffect(dsp.effects.MAGIC_DEF_DOWN,25,0,30)) then
 					target:messageBasic(194);
 				else
 					target:messageBasic(189);
 				end
 			elseif (statusEffectMagic == 2) then
-				if (target:addStatusEffect(EFFECT_MAGIC_ACC_DOWN,25,0,30)) then
+				if (target:addStatusEffect(dsp.effects.MAGIC_ACC_DOWN,25,0,30)) then
 					target:messageBasic(194);
 				else
 					target:messageBasic(189);
 				end
 			elseif (statusEffectMagic == 3) then
-				if (target:addStatusEffect(EFFECT_MAGIC_ATK_DOWN,25,0,30)) then
+				if (target:addStatusEffect(dsp.effects.MAGIC_ATK_DOWN,25,0,30)) then
 					target:messageBasic(194);
 				else
 					target:messageBasic(189);
@@ -53,31 +53,31 @@ function OnUseAbility(player, target, ability)
 			end
 		else
 			if (statusEffectMelee == 1) then
-				if (target:addStatusEffect(EFFECT_SLOW,25,0,30)) then
+				if (target:addStatusEffect(dsp.effects.SLOW,25,0,30)) then
 					target:messageBasic(194);
 				else
 					target:messageBasic(189);
 				end
 			elseif (statusEffectMelee == 2) then
-				if (target:addStatusEffect(EFFECT_EVASION_DOWN,25,0,30)) then
+				if (target:addStatusEffect(dsp.effects.EVASION_DOWN,25,0,30)) then
 					target:messageBasic(194);
 				else
 					target:messageBasic(189);
 				end
 			elseif (statusEffectMelee == 3) then
-				if (target:addStatusEffect(EFFECT_ATTACK_DOWN,25,0,30)) then
+				if (target:addStatusEffect(dsp.effects.ATTACK_DOWN,25,0,30)) then
 					target:messageBasic(194);
 				else
 					target:messageBasic(189);
 				end
 			elseif (statusEffectMelee == 4) then
-				if (target:addStatusEffect(EFFECT_ACCURACY_DOWN,25,0,30)) then
+				if (target:addStatusEffect(dsp.effects.ACCURACY_DOWN,25,0,30)) then
 					target:messageBasic(194);
 				else
 					target:messageBasic(189);
 				end
 			elseif (statusEffectMelee == 5) then
-				if (target:addStatusEffect(EFFECT_DEFENSE_DOWN,25,0,30)) then
+				if (target:addStatusEffect(dsp.effects.DEFENSE_DOWN,25,0,30)) then
 					target:messageBasic(194);
 				else
 					target:messageBasic(189);

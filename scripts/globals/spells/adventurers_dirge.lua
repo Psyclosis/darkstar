@@ -32,8 +32,8 @@ function onSpellCast(caster,target,spell)
 
     -- Until someone finds a way to delete Effects by tier we should not allow bard spells to stack.
     -- Since all the tiers use the same effect buff it is hard to delete a specific one.
-    target:delStatusEffect(EFFECT_DIRGE);
-    target:addStatusEffect(EFFECT_DIRGE,power,3,duration);
+    target:delStatusEffect(dsp.effects.DIRGE);
+    target:addStatusEffect(dsp.effects.DIRGE,power,3,duration);
     spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
     return EFFECT_DIRGE;
     ]]

@@ -38,12 +38,12 @@ function onMobSpawn(mob)
     -- Other
     mob:SetMobSkillAttack(0); -- resetting so it doesn't respawn in flight mode.
     mob:AnimationSub(0); -- subanim 0 is only used when it spawns until first flight.
-    mob:delStatusEffect(EFFECT_ALL_MISS);
+    mob:delStatusEffect(dsp.effects.ALL_MISS);
 end;
 
 
 function onMobEngaged(mob, target)
-    mob:delStatusEffect(EFFECT_RAGE);
+    mob:delStatusEffect(dsp.effects.RAGE);
 end;
 
 function onMobFight(mob,target)
@@ -78,19 +78,19 @@ function onMobFight(mob,target)
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
     elseif (mob:getLocalVar("Jorm_Boosted") == 0) then
-        if (mob:getHPP() <= 20 and mob:hasStatusEffect(EFFECT_BLOOD_WEAPON)) then
+        if (mob:getHPP() <= 20 and mob:hasStatusEffect(dsp.effects.BLOOD_WEAPON)) then
             mob:setLocalVar("Jorm_Boosted", 1);
             mob:addMod(MOD_REGAIN, 10);
             mob:addMod(MOD_DOUBLE_ATTACK, 15);
-            mob:addStatusEffect(EFFECT_HASTE,100,0,100);
-            mob:getStatusEffect(EFFECT_HASTE):setFlag(32); -- sometimes nil, needs edit
-            mob:addStatusEffect(EFFECT_ATTACK_BOOST,75,0,0);
-            mob:getStatusEffect(EFFECT_ATTACK_BOOST):setFlag(32);
+            mob:addStatusEffect(dsp.effects.HASTE,100,0,100);
+            mob:getStatusEffect(dsp.effects.HASTE):setFlag(32); -- sometimes nil, needs edit
+            mob:addStatusEffect(dsp.effects.ATTACK_BOOST,75,0,0);
+            mob:getStatusEffect(dsp.effects.ATTACK_BOOST):setFlag(32);
         end
     end
 
     if (mob:getBattleTime() > 3600 and mob:getLocalVar("RAGED") == 0) then
-        mob:addStatusEffectEx(EFFECT_RAGE,0,1,0,0);
+        mob:addStatusEffectEx(dsp.effects.RAGE,0,1,0,0);
         mob:setLocalVar("RAGED", 1);
     end
 end;
@@ -155,7 +155,7 @@ function onAdditionalEffect(mob,target,damage)
 end;
 
 function onMobDrawIn(mob, target)
-    target:addStatusEffect(EFFECT_BIND, 1, 0, 3);
+    target:addStatusEffect(dsp.effects.BIND, 1, 0, 3);
     mob:useMobAbility(1290);
     mob:addTP(1000);
 end;

@@ -36,12 +36,12 @@ function onEffectTick(target,effect)
 	target:setVar("preptime",tick);
 
 	if (LastZone == 132 or LastZone == 15 or LastZone == 45 or LastZone == 215 or LastZone == 216 or LastZone == 217 or LastZone == 218 or LastZone == 253 or LastZone == 254) then
-		target:delStatusEffectSilent(EFFECT_PREPARATIONS);	-- make sure you lose status on zone out.
+		target:delStatusEffectSilent(dsp.effects.PREPARATIONS);	-- make sure you lose status on zone out.
 	end
 
 	-- print("tick",tick);
 
-	if (target:hasStatusEffect(EFFECT_VISITANT) == false) then
+	if (target:hasStatusEffect(dsp.effects.VISITANT) == false) then
 		if (preptime == 300) then
 			target:messageSpecial(EXIT_WARNING_2,5,1,0);
 		elseif (preptime == 60)then
@@ -74,7 +74,7 @@ function onEffectLose(target,effect)
 ----------------------------]]--
 	local Zone = target:getZone();
 	target:setVar("preptime",300);
-	if (target:hasStatusEffect(EFFECT_VISITANT) == false) then
+	if (target:hasStatusEffect(dsp.effects.VISITANT) == false) then
 		if (Zone == 132) then
 			target:setPos(0,0,0,0,0);
 		elseif (Zone == 15) then

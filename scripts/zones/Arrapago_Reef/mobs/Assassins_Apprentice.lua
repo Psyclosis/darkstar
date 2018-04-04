@@ -62,10 +62,10 @@ end;
 -----------------------------------
 
 function onAdditionalEffect(mob,target,damage)
-    if ((math.random(1,10) > 8) or (target:hasStatusEffect(EFFECT_STUN) == true)) then
+    if ((math.random(1,10) > 8) or (target:hasStatusEffect(dsp.effects.STUN) == true)) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_STUN,1,0,2);
+        target:addStatusEffect(dsp.effects.STUN,1,0,2);
     end
 
     return SUBEFFECT_STUN,chatType.ADD_EFFECT_STATUS,EFFECT_STUN;

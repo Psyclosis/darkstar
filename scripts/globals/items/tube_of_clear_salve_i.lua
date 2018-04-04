@@ -15,7 +15,7 @@ function onItemCheck(target)
 	if (target:getObjType() ~= TYPE_PET)
 		result = 56;
 	end
-	if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+	if (target:hasStatusEffect(dsp.effects.MEDICINE)) then
 		result = 111;
 	end	
 	return result;
@@ -32,7 +32,7 @@ function onItemUse(target)
 	else
 		target:eraseStatusEffect();
 	end
-	target:addStatusEffect(EFFECT_MEDICINE,0,0,180);
+	target:addStatusEffect(dsp.effects.MEDICINE,0,0,180);
 end;
 
 -----------------------------------------

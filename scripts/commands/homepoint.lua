@@ -34,7 +34,7 @@ function onTrigger(player, target)
     require("scripts/globals/status");
     require("scripts/globals/teleports");
     targ:injectActionPacket(4, 261, 0, 0, 0);
-    targ:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,4);
+    targ:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_WARP,0,4);
 
     if (targ:getID() ~= player:getID()) then
         player:PrintToPlayer(string.format("Sent %s to their homepoint.",targ:getName()));

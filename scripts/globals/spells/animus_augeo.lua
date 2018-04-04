@@ -14,7 +14,7 @@ function onSpellCast(caster,target,spell)
     local power = 20;
     local duration = 180;
 
-    target:addStatusEffect(EFFECT_ENMITY_BOOST,power,0,duration);
+    target:addStatusEffect(dsp.effects.ENMITY_BOOST,power,0,duration);
 
     return EFFECT_ENMITY_BOOST;
 end;

@@ -15,7 +15,7 @@ require("scripts/globals/status");
 function onItemCheck(target)
 	pet = target:getPet();
 	result = 0;
-	if (pet:hasStatusEffect(EFFECT_MEDICINE)) then
+	if (pet:hasStatusEffect(dsp.effects.MEDICINE)) then
 		result = 111;
 	end
 	mHP = pet:getMaxHP();
@@ -33,7 +33,7 @@ end;
 
 function onItemUse(target)
 	local rHP = mHP - cHP;
-	pet:addStatusEffect(EFFECT_MEDICINE,0,0,180);
+	pet:addStatusEffect(dsp.effects.MEDICINE,0,0,180);
 	pet:addHP(rHP);
 	target:messageBasic(24,0,rHP);
 end;

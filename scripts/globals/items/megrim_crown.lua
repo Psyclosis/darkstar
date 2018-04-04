@@ -26,32 +26,32 @@ function onItemUse(target)
 	local ATKmod = math.random(5,15)
 	local ACCmod = math.random(5,15)
 	if (var == 1) then
-		if (target:hasStatusEffect(EFFECT_DEFENSE_BOOST) == false) then
-			target:addStatusEffect(EFFECT_DEFEFENSE_BOOST,DEFmod,0,900);
+		if (target:hasStatusEffect(dsp.effects.DEFENSE_BOOST) == false) then
+			target:addStatusEffect(dsp.effects.DEFEFENSE_BOOST,DEFmod,0,900);
 		end
 	elseif (var == 2) then
-		if (target:hasStatusEffect(EFFECT_ATTACK_BOOST) == false) then
-			target:addStatusEffect(EFFECT_ATTACK_BOOST,ATKmod,0,900);
+		if (target:hasStatusEffect(dsp.effects.ATTACK_BOOST) == false) then
+			target:addStatusEffect(dsp.effects.ATTACK_BOOST,ATKmod,0,900);
 		end
 	elseif (var == 3) then
-		if (target:hasStatusEffect(EFFECT_ACCURACY_BOOST) == false) then
-			target:addStatusEffect(EFFECT_ACCURACY_BOOST,ACCmod,0,900);
+		if (target:hasStatusEffect(dsp.effects.ACCURACY_BOOST) == false) then
+			target:addStatusEffect(dsp.effects.ACCURACY_BOOST,ACCmod,0,900);
 		end
 	elseif (var == 4) then
-		if (target:hasStatusEffect(EFFECT_BLINK) == false) then
-			target:addStatusEffect(EFFECT_BLINK,4,1,900);
+		if (target:hasStatusEffect(dsp.effects.BLINK) == false) then
+			target:addStatusEffect(dsp.effects.BLINK,4,1,900);
 		end
 	elseif (var == 5) then
-		if (target:hasStatusEffect(EFFECT_REGEN) == false) then
-			target:addStatusEffect(EFFECT_REGEN,3,1,900);
+		if (target:hasStatusEffect(dsp.effects.REGEN) == false) then
+			target:addStatusEffect(dsp.effects.REGEN,3,1,900);
 		end
 	elseif (var == 6) then
-		if (target:hasStatusEffect(EFFECT_REFRESH) == false) then
-			target:addStatusEffect(EFFECT_REFRESH,5,1,900);
+		if (target:hasStatusEffect(dsp.effects.REFRESH) == false) then
+			target:addStatusEffect(dsp.effects.REFRESH,5,1,900);
 		end
 	elseif (var == 7) then
-		if (target:hasStatusEffect(EFFECT_BLAZE_SPIKES) == false) then
-			target:addStatusEffect(EFFECT_BLAZE_SPIKES,4,3,900);
+		if (target:hasStatusEffect(dsp.effects.BLAZE_SPIKES) == false) then
+			target:addStatusEffect(dsp.effects.BLAZE_SPIKES,4,3,900);
 		end
 	end;
 end;

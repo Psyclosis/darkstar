@@ -22,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
         local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
         if (math.random(1,10) == 5) then -- 1 in 10 chance of 1 second stun just to interrupt spells.
-            target:addStatusEffect(EFFECT_STUN, 0, 0, 1);
+            target:addStatusEffect(dsp.effects.STUN, 0, 0, 1);
         end
 
         skill:setMsg(msgBasic.MELEE_AOE); -- AoE MSG
@@ -42,7 +42,7 @@ function onMobWeaponSkill(target, mob, skill)
         local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
 
         if (math.random(1,10) == 5) then -- 1 in 10 chance of 1 second stun just to interrupt spells.
-            target:addStatusEffect(EFFECT_STUN, 0, 0, 1);
+            target:addStatusEffect(dsp.effects.STUN, 0, 0, 1);
         end
 
         -- skill:setMsg(msgBasic.MELEE); -- Single Target MSG
@@ -62,7 +62,7 @@ function onMobWeaponSkill(target, mob, skill)
         local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
 
         if (math.random(1,10) == 5) then -- 1 in 10 chance of 1 second stun just to interrupt spells.
-            target:addStatusEffect(EFFECT_STUN, 0, 0, 1);
+            target:addStatusEffect(dsp.effects.STUN, 0, 0, 1);
         end
 
         -- skill:setMsg(msgBasic.MELEE); -- Single Target MSG
