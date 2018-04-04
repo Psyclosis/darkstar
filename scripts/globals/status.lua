@@ -130,19 +130,17 @@ dsp.effects =
 {
     ------------------------------------------------
     -- Start of LegionXI custom section
-    COMMUTE                  = 1014 -- Transports player after a slight delay
-    CURSE_SPIKES             = 1015 -- Curse Spikes
-    CUSTOM_ENSPELL           = 1016 -- Used by mobs with dispellable custom Enspells
-    -- PLACEHOLDER              = 1017
-    -- PLACEHOLDER              = 1018
-    DARK_SPIKES              = 1019
-    SJCAP_BOOST              = 1020
-    RAGE                     = 1021 -- NM CRUSH PUNY PLAYER WHO TAKE TOO LONG!
-    LEGION                   = 1022 -- !regen
+    COMMUTE                  = 1014, -- Transports player after a slight delay
+    CURSE_SPIKES             = 1015, -- Curse Spikes
+    CUSTOM_ENSPELL           = 1016, -- Used by mobs with dispellable custom Enspells
+    -- PLACEHOLDER              = 1017,
+    -- PLACEHOLDER              = 1018,
+    DARK_SPIKES              = 1019,
+    SJCAP_BOOST              = 1020,
+    RAGE                     = 1021, -- NM CRUSH PUNY PLAYER WHO TAKE TOO LONG!
+    LEGION                   = 1022, -- !regen
     -- End of LegionXI Custom Section
     ------------------------------------------------
-    -- PLACEHOLDER             = 1023 -- The client dat file seems to have only this many "slots", results of exceeding that are untested.
-
     KO                       = 0,
     WEAKNESS                 = 1,
     SLEEP_I                  = 2,
@@ -788,7 +786,7 @@ dsp.effects =
     -- PLACEHOLDER              = 802, -- Description
     -- 802-1022
     -- PLACEHOLDER             = 1023 -- The client dat file seems to have only this many "slots", results of exceeding that are untested.
-    }
+}
 
 ----------------------------------
 -- SC masks
