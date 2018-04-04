@@ -5,27 +5,19 @@
 -- Recast Time: 10 seconds (shared with all maneuvers)
 -- Duration: 1 minute
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:getWeaponSubSkillType(SLOT_RANGED) == 10 and
-        not player:hasStatusEffect(EFFECT_OVERLOAD) and
+        not player:hasStatusEffect(dsp.effects.OVERLOAD) and
         player:getPet()) then
         return 0,0;
     else
         return 71,0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
 
@@ -38,7 +30,7 @@ function onUseAbility(player,target,ability)
 
     if (overload ~= 0) then
         target:removeAllManeuvers();
-        target:addStatusEffect(EFFECT_OVERLOAD, 0, 0, overload);
+        target:addStatusEffect(dsp.effects.OVERLOAD, 0, 0, overload);
     else
         local level;
         if (target:getMainJob() == JOBS.PUP) then
@@ -53,8 +45,8 @@ function onUseAbility(player,target,ability)
             target:removeOldestManeuver();
         end
 
-        target:addStatusEffect(EFFECT_WATER_MANEUVER, bonus, 0, 60);
+        target:addStatusEffect(dsp.effects.WATER_MANEUVER, bonus, 0, 60);
     end
 
-    return EFFECT_WATER_MANEUVER;
+    return dsp.effects.WATER_MANEUVER;
 end;

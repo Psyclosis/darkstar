@@ -107,6 +107,11 @@ ABILITY_CORSAIRS_ROLL      = 98;
 ABILITY_PUPPET_ROLL        = 99;
 ABILITY_DANCERS_ROLL       = 100;
 ABILITY_SCHOLARS_ROLL      = 101;
+ABILITY_BOLTERS_ROLL       = 102;
+ABILITY_CASTERS_ROLL       = 103;
+ABILITY_COURSERS_ROLL      = 104;
+ABILITY_BLITZERS_ROLL      = 105;
+ABILITY_TACTICIANS_ROLL    = 106;
 ABILITY_DOUBLE_UP          = 107;
 ABILITY_QUICK_DRAW         = 108;
 ABILITY_FIRE_SHOT          = 109;
@@ -211,6 +216,7 @@ ABILITY_VELOCITY_SHOT      = 208;
 ABILITY_SNARL              = 209;
 ABILITY_RETALIATION        = 210;
 ABILITY_FOOTWORK           = 211;
+ABILITY_DESPOIL            = 212;
 ABILITY_PIANISSIMO         = 213;
 ABILITY_SEKKANOKI          = 214;
 ABILITY_ELEMENTAL_SIPHON   = 216;
@@ -346,6 +352,8 @@ ABILITY_ONE_FOR_ALL        = 358;
 ABILITY_WARD               = 363;
 ABILITY_EFFUSION           = 364;
 ABILITY_APOGEE             = 369;
+ABILITY_NATURALISTS_ROLL   = 374;
+ABILITY_RUNEISTS_ROLL      = 375;
 ABILITY_HEALING_RUBY       = 496;
 ABILITY_POISON_NAILS       = 497;
 ABILITY_SHINING_RUBY       = 498;
@@ -433,8 +441,8 @@ SPECEFFECT_CRITICAL_HIT = 0x22
 
 function corsairSetup(caster, ability, action, effect, job)
     local roll = math.random(1,6);
-    caster:delStatusEffectSilent(EFFECT_DOUBLE_UP_CHANCE);
-    caster:addStatusEffectEx(EFFECT_DOUBLE_UP_CHANCE,
+    caster:delStatusEffectSilent(dsp.effects.DOUBLE_UP_CHANCE);
+    caster:addStatusEffectEx(dsp.effects.DOUBLE_UP_CHANCE,
                              EFFECT_DOUBLE_UP_CHANCE,
                              roll,
                              0,
@@ -469,12 +477,32 @@ function checkForElevenRoll(caster)
     local effects = caster:getStatusEffects()
     for _,effect in ipairs(effects) do
         if (effect:getType() >= EFFECT_FIGHTERS_ROLL and
-            effect:getType() <= EFFECT_SCHOLARS_ROLL and
+            effect:getType() <= EFFECT_NATURALISTS_ROLL and
             effect:getSubPower() == 11) then
             return true
         end
+        if (effect:getType() == EFFECT_RUNEISTS_ROLL and
+                effect:getSubPower() == 11) then
+            return true 
+        end
     end
     return false
+end
+
+function phantombuffMultiple(caster) -- Check for MOD_PHANTOM_ROLL Value and apply non-stack logic.
+    local phantomValue = caster:getMod(MOD_PHANTOM_ROLL);
+    local phantombuffValue = 0;
+    if (phantomValue == 3) then
+        phantombuffMultiplier = 3;
+    elseif ((phantomValue == 5) or (phantomValue == 8)) then
+        phantombuffMultiplier = 5;
+    elseif ((phantomValue == 7) or (phantomValue == 10) or (phantomValue == 12) or (phantomValue == 15)) then
+        phantombuffMultiplier = 7;
+    else
+        phantombuffMultiplier = 0;
+    end
+
+    return phantombuffMultiplier;
 end
 
 function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
@@ -485,7 +513,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     --handle pd
-    if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effects.PERFECT_DODGE) or target:hasStatusEffect(dsp.effects.ALL_MISS) )
             and skilltype == MOBSKILL_PHYSICAL) then
         skill:setMsg(msgBasic.JA_MISS_2);
         return 0;
@@ -507,9 +535,9 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(EFFECT_COPY_IMAGE);
-        target:delStatusEffect(EFFECT_BLINK);
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(dsp.effects.COPY_IMAGE);
+        target:delStatusEffect(dsp.effects.BLINK);
+        target:delStatusEffect(dsp.effects.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide

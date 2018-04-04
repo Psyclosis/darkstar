@@ -103,8 +103,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     local lvltarget = target:getMainLvl();
     local acc = mob:getACC();
     local eva = target:getEVA();
-    if (target:hasStatusEffect(EFFECT_YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
-        eva = eva + target:getStatusEffect(EFFECT_YONIN):getPower();
+    if (target:hasStatusEffect(dsp.effects.YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
+        eva = eva + target:getStatusEffect(dsp.effects.YONIN):getPower();
     end
 
     --apply WSC
@@ -254,7 +254,7 @@ end
 -- 2 = TP_MAB_BONUS
 -- 3 = TP_DMG_BONUS
 -- tpvalue affects the strength of having more TP along the following lines:
--- TP_NO_EFFECT -> tpvalue has no effect.
+-- TP_NO_EFFECT -> tpvalue has no dsp.effects.
 -- TP_MACC_BONUS -> direct multiplier to macc (1 for default)
 -- TP_MAB_BONUS -> direct multiplier to mab (1 for default)
 -- TP_DMG_BONUS -> direct multiplier to damage (V+dINT) (1 for default)
@@ -370,7 +370,7 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
         end
     elseif VanadielDayElement() == dayWeak[ele] then
         if math.random() < 0.33 then
-            dayWeatherBonus = dayWeatherBonus + 0.10;
+            dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     end
 
@@ -479,7 +479,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     end
 
     --handle pd
-    if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effects.PERFECT_DODGE) or target:hasStatusEffect(dsp.effects.ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
         skill:setMsg(msgBasic.SKILL_MISS);
         return 0;
@@ -505,13 +505,13 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(EFFECT_COPY_IMAGE);
-        target:delStatusEffect(EFFECT_BLINK);
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(dsp.effects.COPY_IMAGE);
+        target:delStatusEffect(dsp.effects.BLINK);
+        target:delStatusEffect(dsp.effects.THIRD_EYE);
     end
 
     if (skilltype == MOBSKILL_PHYSICAL and skill:isSingle() == false) then
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(dsp.effects.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide
@@ -666,15 +666,9 @@ end;
 
 function MobDrainStatusEffectMove(mob, target)
     -- try to drain buff
-    local effect = target:stealStatusEffect();
-    local dmg = 0;
+    local effect = mob:stealStatusEffect(target);
 
-    if (effect ~= nil) then
-        if (mob:hasStatusEffect(effect:getType()) == false) then
-            -- add to myself
-            mob:addStatusEffect(effect:getType(), effect:getPower(), effect:getTickCount(), effect:getDuration());
-        end
-        -- add buff to myself
+    if (effect ~= 0) then
         return msgBasic.EFFECT_DRAINED;
     end
 

@@ -98,6 +98,10 @@ TELEPORT_EXITPROMMEA   = 26;
 TELEPORT_EXITPROMHOLLA = 27;
 TELEPORT_EXITPROMDEM   = 28;
 TELEPORT_LUFAISE       = 29;
+TELEPORT_CHOCOWINDURST = 30;
+TELEPORT_CHOCOSANDORIA = 31;
+TELEPORT_CHOCOBASTOK   = 32;
+TELEPORT_DUCALGUARD    = 33;
 -----------------------------------
 -- Teleports
 -----------------------------------
@@ -805,8 +809,8 @@ function cobraStaff(player)
     player:setPos(-39,-5,231,68,0x5E);
 end;
 
-function ducalGaurdRing(player)
-    player:setPos(48.930,10.002,-71.032,195,0xF3);
+function ducalGuardRing(player)
+    player:setPos(48.930,10.002,-71.032,195,243);
 end;
 
 function federationEarring(player)
@@ -888,8 +892,8 @@ function kingdomEarring(player)
     player:setPos(154,-2,152,0,230);
 end;
 
-function kingdomStablesScarf(player)
-    player:setPos(-7,2,-84,0,230);
+function kingdomStablesCollar(player)
+    player:setPos(-8.557,1.999,-80.093,64,230); -- {R}
 end;
 
 function laurelCrown(player)
@@ -936,7 +940,7 @@ function republicEarring(player)
 end;
 
 function republicStablesMedal(player)
-    player:setPos(40,0,-90,0,234);
+    player:setPos(40.164,0.000,-83.578,64,234); -- {R}
 end;
 
 function safeholdEarring(player)

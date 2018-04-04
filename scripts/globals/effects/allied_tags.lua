@@ -32,7 +32,7 @@ end;
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(EFFECT_ALLIED_TAGS);
+        target:getPet():delStatusEffect(dsp.effects.ALLIED_TAGS);
     end
    -- local allegiance = target:getAllegiance();
    -- local ALLEGIANCE_PLAYER = 1;

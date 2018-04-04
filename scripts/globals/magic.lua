@@ -57,7 +57,6 @@ require("scripts/globals/msg");
     nullMod = {MOD_FIRE_NULL, MOD_EARTH_NULL, MOD_WATER_NULL, MOD_WIND_NULL, MOD_ICE_NULL, MOD_LTNG_NULL, MOD_LIGHT_NULL, MOD_DARK_NULL};
     blmMerit = {MERIT_FIRE_MAGIC_POTENCY, MERIT_EARTH_MAGIC_POTENCY, MERIT_WATER_MAGIC_POTENCY, MERIT_WIND_MAGIC_POTENCY, MERIT_ICE_MAGIC_POTENCY, MERIT_LIGHTNING_MAGIC_POTENCY};
     rdmMerit = {MERIT_FIRE_MAGIC_ACCURACY, MERIT_EARTH_MAGIC_ACCURACY, MERIT_WATER_MAGIC_ACCURACY, MERIT_WIND_MAGIC_ACCURACY, MERIT_ICE_MAGIC_ACCURACY, MERIT_LIGHTNING_MAGIC_ACCURACY};
-    blmAMIIMerit = {MERIT_FLARE_II, MERIT_QUAKE_II, MERIT_FLOOD_II, MERIT_TORNADO_II, MERIT_FREEZE_II, MERIT_BURST_II};
     barSpells = {EFFECT_BARFIRE, EFFECT_BARSTONE, EFFECT_BARWATER, EFFECT_BARAERO, EFFECT_BARBLIZZARD, EFFECT_BARTHUNDER};
 
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
@@ -89,7 +88,7 @@ function calculateMagicDamage(caster, target, spell, params)
         dmg = dmg + (dINT * params.multiplier);
     elseif (dINT > 0 and dINT > SOFT_CAP and dINT < HARD_CAP) then --After SOFT_CAP, INT is only half effective
         dmg = dmg + SOFT_CAP * params.multiplier + ((dINT - SOFT_CAP) * params.multiplier) / 2;
-    elseif (dINT > 0 and dINT > SOFT_CAP and dINT >= HARD_CAP) then --After HARD_CAP, INT has no effect.
+    elseif (dINT > 0 and dINT > SOFT_CAP and dINT >= HARD_CAP) then --After HARD_CAP, INT has no dsp.effects.
         dmg = dmg + HARD_CAP * params.multiplier;
     end
 
@@ -107,7 +106,7 @@ end;
 
 function doBoostGain(caster,target,spell,effect)
     local duration = 300;
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
@@ -145,12 +144,12 @@ end;
 function doEnspell(caster,target,spell,effect)
 
     if (effect==EFFECT_BLOOD_WEAPON) then
-        target:addStatusEffect(EFFECT_BLOOD_WEAPON,1,0,30);
+        target:addStatusEffect(dsp.effects.BLOOD_WEAPON,1,0,30);
         return;
     end
 
     local duration = 180;
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
     --calculate potency
@@ -206,15 +205,15 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
     end
 
     local dSeal = 1;
-    if (caster:hasStatusEffect(EFFECT_DIVINE_SEAL)) then
+    if (caster:hasStatusEffect(dsp.effects.DIVINE_SEAL)) then
         dSeal = 2;
     end
 
     local rapture = 1;
     if (isBlueMagic == false) then --rapture doesn't affect BLU cures as they're not white magic
-        if (caster:hasStatusEffect(EFFECT_RAPTURE)) then
+        if (caster:hasStatusEffect(dsp.effects.RAPTURE)) then
             rapture = 1.5 + caster:getMod(MOD_RAPTURE_AMOUNT)/100;
-            caster:delStatusEffectSilent(EFFECT_RAPTURE);
+            caster:delStatusEffectSilent(dsp.effects.RAPTURE);
         end
     end
 
@@ -325,13 +324,13 @@ function applyResistanceEffect(caster, target, spell, params)
     if (math.random(1,1000) <= customResCheck(target, effect)) then return 0; end
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
     if (effect ~= nil) then -- Dispel's script doesn't have an "effect" to send here, nor should it.
-        if (skill == ENFEEBLING_MAGIC_SKILL and caster:hasStatusEffect(EFFECT_STYMIE) and target:canGainStatusEffect(effect)) then
-            caster:delStatusEffect(EFFECT_STYMIE);
+        if (skill == ENFEEBLING_MAGIC_SKILL and caster:hasStatusEffect(dsp.effects.STYMIE) and target:canGainStatusEffect(effect)) then
+            caster:delStatusEffect(dsp.effects.STYMIE);
             return 1;
         end
     end
 
-    if (skill == SINGING_SKILL and caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+    if (skill == SINGING_SKILL and caster:hasStatusEffect(dsp.effects.TROUBADOUR)) then
         if (math.random(0,99) < caster:getMerit(MERIT_TROUBADOUR)-25) then
             return 1.0;
         end
@@ -339,7 +338,7 @@ function applyResistanceEffect(caster, target, spell, params)
 
     local element = spell:getElement();
     local percentBonus = 0;
-    local magicaccbonus = getSpellBonusAcc(caster, target, spell);
+    local magicaccbonus = getSpellBonusAcc(caster, target, spell, params);
 
     if (diff > 10) then
         magicaccbonus = magicaccbonus + 10 + (diff - 10)/2;
@@ -378,7 +377,7 @@ end;
 function getMagicHitRate(caster, target, skillType, element, percentBonus, bonusAcc)
     -- resist everything if magic shield is active
     --[[
-    if (target:hasStatusEffect(EFFECT_MAGIC_SHIELD, 0)) then
+    if (target:hasStatusEffect(dsp.effects.MAGIC_SHIELD, 0)) then
         return 0;
     end
     ]]
@@ -523,32 +522,27 @@ function getEffectResistance(target, effect)
 end;
 
 -- Returns the bonus magic accuracy for any spell
-function getSpellBonusAcc(caster, target, spell)
+function getSpellBonusAcc(caster, target, spell, params)
     local magicAccBonus = 0;
-    local spellId = spell:getID();
-    local element = spell:getElement();
     local castersWeather = caster:getWeather();
     local skill = spell:getSkillType();
     local spellGroup = spell:getSpellGroup();
+    local element = spell:getElement();
 
-    if caster:hasStatusEffect(EFFECT_ALTRUISM) and spellGroup == SPELLGROUP_WHITE then
-      magicAccBonus = magicAccBonus + caster:getStatusEffect(EFFECT_ALTRUISM):getPower();
+    params.AMIIaccBonus = params.AMIIaccBonus or 0
+
+    if caster:hasStatusEffect(dsp.effects.ALTRUISM) and spellGroup == SPELLGROUP_WHITE then
+      magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effects.ALTRUISM):getPower();
     end
 
-    if caster:hasStatusEffect(EFFECT_FOCALIZATION) and spellGroup == SPELLGROUP_BLACK then
-      magicAccBonus = magicAccBonus + caster:getStatusEffect(EFFECT_FOCALIZATION):getPower();
+    if caster:hasStatusEffect(dsp.effects.FOCALIZATION) and spellGroup == SPELLGROUP_BLACK then
+      magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effects.FOCALIZATION):getPower();
     end
 
     local skillchainTier, skillchainCount = FormMagicBurst(element, target);
 
     --add acc for BLM AMII spells
-    if (spellId == 205 or spellId == 207 or spellId == 209 or spellId == 211 or spellId == 213 or spellId == 215) then
-        -- no bonus if the caster has zero merit investment - don't want to give them a negative bonus
-        if (caster:getMerit(blmAMIIMerit[element]) ~= 0) then
-            -- bonus value granted by merit is 1; subtract 1 since unlock doesn't give an accuracy bonus
-            magicAccBonus = magicAccBonus + (caster:getMerit(blmAMIIMerit[element]) - 1) * 5;
-        end
-    end
+    magicAccBonus = magicAccBonus + params.AMIIaccBonus;
 
     --add acc for skillchains
     if (skillchainTier > 0) then
@@ -556,12 +550,14 @@ function getSpellBonusAcc(caster, target, spell)
     end
 
     --Add acc for klimaform
-    if (caster:hasStatusEffect(EFFECT_KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element])) then
-        magicAccBonus = magicAccBonus + 15;
+    if element > 0 then
+        if caster:hasStatusEffect(dsp.effects.KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element]) then
+            magicAccBonus = magicAccBonus + 15
+        end
     end
 
     --Add acc for dark seal
-    if (skill == DARK_MAGIC_SKILL and caster:hasStatusEffect(EFFECT_DARK_SEAL)) then
+    if (skill == DARK_MAGIC_SKILL and caster:hasStatusEffect(dsp.effects.DARK_SEAL)) then
         magicAccBonus = magicAccBonus + 256;
     end
 
@@ -579,7 +575,7 @@ function getSpellBonusAcc(caster, target, spell)
 end;
 
 function handleAfflatusMisery(caster, spell, dmg)
-    if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+    if (caster:hasStatusEffect(dsp.effects.AFFLATUS_MISERY)) then
         local misery = caster:getMod(MOD_AFFLATUS_MISERY);
         local miseryMax = caster:getMaxHP() / 4;
 
@@ -617,8 +613,8 @@ end;
         end
 
         -- kill shadows
-        -- target:delStatusEffect(EFFECT_COPY_IMAGE);
-        -- target:delStatusEffect(EFFECT_BLINK);
+        -- target:delStatusEffect(dsp.effects.COPY_IMAGE);
+        -- target:delStatusEffect(dsp.effects.BLINK);
     else
         -- this logic will eventually be moved here
         -- dmg = utils.takeShadows(target, dmg, 1);
@@ -706,58 +702,65 @@ function adjustForTarget(target,dmg,ele)
     return dmg;
 end;
 
-function calculateMagicBurst(caster, spell, target)
+function calculateMagicBurst(caster, spell, target, params)
 
     local burst = 1.0;
+    local skillchainburst = 1.0;
+    local modburst = 1.0;
 
-    if (spell:getSpellGroup() == 3 and not caster:hasStatusEffect(EFFECT_BURST_AFFINITY)) then
+    if (spell:getSpellGroup() == 3 and not caster:hasStatusEffect(dsp.effects.BURST_AFFINITY)) then
         return burst;
     end
 
+    -- Obtain first multiplier from gear, atma and job traits
+    -- Add in bonus from BLM AMII merits (minimum 0, maximum 0.12 with 5/5 merits)
+    modburst = modburst + (caster:getMod(MOD_MAG_BURST_BONUS) / 100) + params.AMIIburstBonus;
+
+    -- Cap bonuses from first multiplier at 40% or 1.4
+    if (modburst > 1.4) then
+        modburst = 1.4;
+    end
+
+    -- Obtain second multiplier from skillchain
+    -- Starts at 35% damage bonus, increases by 10% for every additional weaponskill in the chain
     local skillchainTier, skillchainCount = FormMagicBurst(spell:getElement(), target);
 
     if (skillchainTier > 0) then
-        if (skillchainCount == 1) then
-            burst = 1.3;
-        elseif (skillchainCount == 2) then
-            burst = 1.35;
-        elseif (skillchainCount == 3) then
-             burst = 1.40;
-        elseif (skillchainCount == 4) then
-            burst = 1.45;
-        elseif (skillchainCount == 5) then
-            burst = 1.50;
+        if (skillchainCount == 1) then -- two weaponskills
+            skillchainburst = 1.35;
+        elseif (skillchainCount == 2) then -- three weaponskills
+            skillchainburst = 1.45;
+        elseif (skillchainCount == 3) then -- four weaponskills
+             skillchainburst = 1.55;
+        elseif (skillchainCount == 4) then -- five weaponskills
+            skillchainburst = 1.65;
+        elseif (skillchainCount == 5) then -- six weaponskills
+            skillchainburst = 1.75;
         else
             -- Something strange is going on if this occurs.
-            burst = 1.0;
-        end
-
-        --add burst bonus for BLM AMII spells
-        if (spell:getID() == 205 or spell:getID() == 207 or spell:getID() == 209 or spell:getID() == 211 or spell:getID() == 213 or spell:getID() == 215) then
-            if (caster:getMerit(blmAMIIMerit[spell:getElement()]) ~= 0) then -- no bonus if the caster has zero merit investment - don't want to give them a negative bonus
-                burst = burst + (caster:getMerit(blmAMIIMerit[spell:getElement()]) - 1) * 0.03; -- bonus value granted by merit is 1; subtract 1 since unlock doesn't give a magic burst bonus
-                -- print((caster:getMerit(blmAMIIMerit[spell:getElement()]) - 1) * 0.03)
-            end
+            skillchainburst = 1.0;
         end
     end
 
-    -- Add in Magic Burst Bonus Modifier
-    if (burst > 1) then
-        burst = burst + (caster:getMod(MOD_MAG_BURST_BONUS) / 100);
+    -- Multiply
+    if (skillchainburst > 1) then
+        burst = burst * modburst * skillchainburst;
     end
 
     return burst;
 end;
 
-function addBonuses(caster, spell, target, dmg, bonusmab)
+function addBonuses(caster, spell, target, dmg, params)
+    params = params or {};
+
     local ele = spell:getElement();
 
     local affinityBonus = AffinityBonusDmg(caster, ele);
     dmg = math.floor(dmg * affinityBonus);
 
-    if (bonusmab == nil) then
-        bonusmab = 0;
-    end
+    params.bonusmab = params.bonusmab or 0
+    params.AMIIaccBonus = params.AMIIaccBonus or 0
+    params.AMIIburstBonus = params.AMIIburstBonus or 0
 
     local magicDefense = getElementalDamageReduction(target, ele);
     dmg = math.floor(dmg * magicDefense);
@@ -811,7 +814,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     dmg = math.floor(dmg * dayWeatherBonus);
 
-    local burst = calculateMagicBurst(caster, spell, target);
+    local burst = calculateMagicBurst(caster, spell, target, params);
 
     if (burst > 1.0) then
         spell:setMsg(spell:getMagicBurstMessage()); -- "Magic Burst!"
@@ -824,7 +827,7 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
         mabbonus = 1 + caster:getMod(MOD_ENH_DRAIN_ASPIR)/100;
         -- print(mabbonus);
     else
-        local mab = caster:getMod(MOD_MATT) + bonusmab;
+        local mab = caster:getMod(MOD_MATT) + params.bonusmab;
 
         local mab_crit = caster:getMod(MOD_MAGIC_CRITHITRATE);
         if ( math.random(1,100) < mab_crit ) then
@@ -847,9 +850,9 @@ function addBonuses(caster, spell, target, dmg, bonusmab)
 
     dmg = math.floor(dmg * mabbonus);
 
-    if (caster:hasStatusEffect(EFFECT_EBULLIENCE)) then
+    if (caster:hasStatusEffect(dsp.effects.EBULLIENCE)) then
         dmg = dmg * (1.2 + caster:getMod(MOD_EBULLIENCE_AMOUNT)/100);
-        caster:delStatusEffectSilent(EFFECT_EBULLIENCE);
+        caster:delStatusEffectSilent(dsp.effects.EBULLIENCE);
     end
 
     dmg = math.floor(dmg);
@@ -1043,31 +1046,31 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     end
 
     -- Remove previous Threnody
-    target:delStatusEffect(EFFECT_THRENODY);
+    target:delStatusEffect(dsp.effects.THRENODY);
 
     local iBoost = caster:getMod(MOD_THRENODY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
     local power = basePower + iBoost*5;
     local duration = baseDuration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
 
-    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+    if (caster:hasStatusEffect(dsp.effects.SOUL_VOICE)) then
         power = power * 2;
-    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+    elseif (caster:hasStatusEffect(dsp.effects.MARCATO)) then
         power = power * 1.5;
     end
 
-    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+    if (caster:hasStatusEffect(dsp.effects.TROUBADOUR)) then
         duration = duration * 2;
     end
 
     -- Set spell message and apply status effect
-    target:addStatusEffect(EFFECT_THRENODY, power, 0, duration, 0, modifier, 0);
+    target:addStatusEffect(dsp.effects.THRENODY, power, 0, duration, 0, modifier, 0);
 
     return EFFECT_THRENODY;
 end;
 
 function handleNinjutsuDebuff(caster, target, spell, basePower, baseDuration, modifier)
     -- Add new
-    target:addStatusEffectEx(EFFECT_NINJUTSU_ELE_DEBUFF, 0, basePower, 0, baseDuration, 0, modifier, 0);
+    target:addStatusEffectEx(dsp.effects.NINJUTSU_ELE_DEBUFF, 0, basePower, 0, baseDuration, 0, modifier, 0);
     return EFFECT_NINJUTSU_ELE_DEBUFF;
 end;
 
@@ -1098,6 +1101,7 @@ function doElementalNuke(caster, spell, target, spellParams)
     local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
     local hasMultipleTargetReduction = spellParams.hasMultipleTargetReduction; --still unused!!!
     local resistBonus = spellParams.resistBonus;
+    local AMIIaccBonus = spellParams.AMIIaccBonus;
     local mDMG = caster:getMod(MOD_MAGIC_DAMAGE);
 
     --[[
@@ -1137,6 +1141,7 @@ function doElementalNuke(caster, spell, target, spellParams)
     params.attribute = MOD_INT;
     params.skillType = ELEMENTAL_MAGIC_SKILL;
     params.resistBonus = resistBonus;
+    params.AMIIaccBonus = AMIIaccBonus;
 
     local resist = applyResistance(caster, target, spell, params);
 
@@ -1144,7 +1149,7 @@ function doElementalNuke(caster, spell, target, spellParams)
     DMG = DMG * resist;
 
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    DMG = addBonuses(caster, spell, target, DMG);
+    DMG = addBonuses(caster, spell, target, DMG, spellParams);
 
     --add in target adjustment
     local ele = spell:getElement();
@@ -1169,8 +1174,8 @@ function doNinjutsuNuke(caster, target, spell, params)
     mabBonus = mabBonus or 0;
 
     mabBonus = mabBonus + caster:getMod(MOD_NIN_NUKE_BONUS); -- "enhances ninjutsu damage" bonus
-    if (caster:hasStatusEffect(EFFECT_INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
-        mabBonus = mabBonus + caster:getStatusEffect(EFFECT_INNIN):getPower();
+    if (caster:hasStatusEffect(dsp.effects.INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
+        mabBonus = mabBonus + caster:getStatusEffect(dsp.effects.INNIN):getPower();
     end
     params.skillType = NINJUTSU_SKILL;
     params.attribute = MOD_INT;
@@ -1200,14 +1205,14 @@ function doNuke(caster, target, spell, params)
             dmg = dmg * ninSkillBonus/100;
         end
         -- boost with Futae
-        if (caster:hasStatusEffect(EFFECT_FUTAE)) then
+        if (caster:hasStatusEffect(dsp.effects.FUTAE)) then
             dmg = math.floor(dmg * 1.50);
-            caster:delStatusEffect(EFFECT_FUTAE);
+            caster:delStatusEffect(dsp.effects.FUTAE);
         end
     end
 
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg,mabBonus);
+    dmg = addBonuses(caster, spell, target, dmg, params);
     --add in target adjustment
     dmg = adjustForTarget(target,dmg,spell:getElement());
     --add in final adjustments
@@ -1227,7 +1232,7 @@ function doDivineBanishNuke(caster, target, spell, params)
     dmg = dmg*resist;
 
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg);
+    dmg = addBonuses(caster, spell, target, dmg, params);
     --add in target adjustment
     dmg = adjustForTarget(target,dmg,spell:getElement());
     --handling afflatus misery

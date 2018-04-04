@@ -8,9 +8,6 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -20,10 +17,6 @@ function onAbilityCheck(player,target,ability)
 
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability,action)
     local pet = player:getPet();
@@ -41,7 +34,7 @@ function onUseAbility(player,target,ability,action)
 
         local tick = 10 - math.ceil(math.max(0, level / 20))
         --printf('tick: %d', tick)
-        pet:addStatusEffectEx(EFFECT_HEALING, 0, 0, tick, 0)
+        pet:addStatusEffectEx(dsp.effects.HEALING, 0, 0, tick, 0)
         pet:setAnimation(0)
     end
 end;

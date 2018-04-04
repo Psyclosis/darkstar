@@ -7,13 +7,9 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onMobInitialize(mob)
-    -- setMobMod
-    mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
     mob:setMobMod(MOBMOD_AUTO_SPIKES,mob:getShortID());
-
-    -- effect
-    mob:addStatusEffect(EFFECT_SHOCK_SPIKES,55,0,0);
-    mob:getStatusEffect(EFFECT_SHOCK_SPIKES):setFlag(32);
+    mob:addStatusEffect(dsp.effects.SHOCK_SPIKES,55,0,0);
+    mob:getStatusEffect(dsp.effects.SHOCK_SPIKES):setFlag(32);
 
     -- addMod
     mob:addMod(MOD_DOUBLE_ATTACK, 30)

@@ -9,7 +9,7 @@ require("scripts/globals/msg");
 
 function onItemCheck(target)
     --[[
-    if (target:hasStatusEffect(EFFECT_MEDICINE)) then
+    if (target:hasStatusEffect(dsp.effects.MEDICINE)) then
         return msgBasic.ITEM_NO_USE_MEDICATED;
     end
     ]]
@@ -18,7 +18,7 @@ end;
 
 function onItemUse(target)
     --[[
-    target:addStatusEffect(EFFECT_MEDICINE,0,0,3600);
+    target:addStatusEffect(dsp.effects.MEDICINE,0,0,3600);
     target:warp();
     ]]
     toHomeNation(target);

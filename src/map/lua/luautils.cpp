@@ -4154,6 +4154,18 @@ namespace luautils
             (searchLuaFileForFunction(std::string("scripts/zones/") + (const char*)PChar->loc.zone->GetName() + "/Zone.lua"));
     }
 
+    uint16 GetDespoilDebuff(uint16 itemId)
+    {
+        uint16 effectId = 0;
+        int32 ret = Sql_Query(SqlHandle, "SELECT effectId FROM despoil_effects WHERE itemId = %u", itemId);
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            effectId = (uint16)Sql_GetUIntData(SqlHandle, 0);
+        }
+
+        return effectId;
+    }
+
     inline int32 underscore2space(lua_State* L)
     {
         if (lua_isnil(L, 1) || !lua_isstring(L, 1))

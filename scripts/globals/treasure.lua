@@ -222,7 +222,7 @@ end
 function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNeeded)
     local success = 0;
     local chance_answer = {nil,nil}; -- {success%,messageType}
-    local weak = player:getStatusEffect(EFFECT_WEAKNESS);
+    local weak = player:getStatusEffect(dsp.effects.WEAKNESS);
     local illu  = player:getVar("["..player:getZoneID().."]".."Treasure_"..TreasureType);
 
     -- SE implemented this in order to prevent coffer farming.
@@ -338,7 +338,7 @@ function chestLoot(zone,npc)
         45, {0.474,390,1300},
         132,{0.474,390,1300},
         141,{0.500,800,2100},
-        142,{0.450,800,235},
+        142,{0.450,800,2350},
         143,{0.455,840,1600},
         145,{0.448,800,1600},
         147,{0.152,3440,9000},

@@ -7,21 +7,12 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onMobInitialize(mob)
-    -- setMobMod
-    mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
     mob:setMobMod(MOBMOD_AUTO_SPIKES,mob:getShortID());
+    mob:addStatusEffect(dsp.effects.ICE_SPIKES,45,0,0);
+    mob:getStatusEffect(dsp.effects.ICE_SPIKES):setFlag(32);
 
-    -- Effects
-    mob:addStatusEffect(EFFECT_ICE_SPIKES,45,0,0);
-    mob:getStatusEffect(EFFECT_ICE_SPIKES):setFlag(32);
-
-    -- addMod
     mob:addMod(MOD_DOUBLE_ATTACK, 30)
 end;
-
------------------------------------
--- onMobSpawn
------------------------------------
 
 function onMobSpawn(mob)
     -- setMod

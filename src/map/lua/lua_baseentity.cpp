@@ -88,6 +88,7 @@
 #include "../packets/char_job_extra.h"
 #include "../packets/char_equip.h"
 #include "../packets/char_health.h"
+#include "../packets/char_mounts.h"
 #include "../packets/char_recast.h"
 #include "../packets/char_skills.h"
 #include "../packets/char_spells.h"
@@ -6115,10 +6116,15 @@ inline int32 CLuaBaseEntity::addKeyItem(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
+    uint8 table = KeyItemID >> 9;
 
     charutils::addKeyItem(PChar, KeyItemID);
-    PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
+    PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)table));
 
+    if (table == 6)
+    {
+        PChar->pushPacket(new CCharMountsPacket(PChar));
+    }
     charutils::SaveKeyItems(PChar);
     return 0;
 }
@@ -9939,7 +9945,7 @@ int32 CLuaBaseEntity::transferEnmity(lua_State* L)
     {
         for (auto&& mob_pair : PIterEntity->SpawnMOBList)
         {
-            if (distance(mob_pair.second->loc.p, PEntity->loc.p) < range)
+            if (distanceSquared(mob_pair.second->loc.p, PEntity->loc.p) < (range * range))
             {
                 battleutils::TransferEnmity(static_cast<CBattleEntity*>(PEntity),
                     static_cast<CBattleEntity*>(m_PBaseEntity),static_cast<CMobEntity*>(mob_pair.second), percent);
@@ -10515,21 +10521,23 @@ inline int32 CLuaBaseEntity::stealStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    CStatusEffect* PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->StealStatusEffect();
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 
-    if (PStatusEffect == nullptr)
-        lua_pushnil(L);
+    EFFECTFLAG flag = EFFECTFLAG_DISPELABLE;
+    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+        flag = (EFFECTFLAG)lua_tointeger(L, 2);
+
+    if (CStatusEffect* PStatusEffect = ((CBattleEntity*)PEntity->m_PBaseEntity)->StatusEffectContainer->StealStatusEffect(flag))
+    {
+        ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PStatusEffect);
+        lua_pushinteger(L, PStatusEffect->GetStatusID());
+    }
     else
     {
-        lua_getglobal(L, CLuaStatusEffect::className);
-        lua_pushstring(L, "new");
-        lua_gettable(L, -2);
-        lua_insert(L, -2);
-        lua_pushlightuserdata(L, (void*)PStatusEffect);
-        lua_pcall(L, 2, 1, 0);
-
-        delete PStatusEffect;
+        lua_pushinteger(L, 0);
     }
+
     return 1;
 }
 
@@ -12240,7 +12248,7 @@ inline int32 CLuaBaseEntity::canUseChocobo(lua_State *L)
         lua_pushinteger(L, 445);
         return 1;
     }
-    lua_pushinteger(L, (m_PBaseEntity->loc.zone->CanUseMisc(MISC_CHOCOBO) ? 0 : MSGBASIC_CANT_BE_USED_IN_AREA)); //316
+    lua_pushinteger(L, (m_PBaseEntity->loc.zone->CanUseMisc(MISC_MOUNT) ? 0 : MSGBASIC_CANT_BE_USED_IN_AREA)); //316
     return 1;
 }
 
@@ -13532,20 +13540,81 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    DropList_t* DropList = itemutils::GetDropList(((CMobEntity*)m_PBaseEntity)->m_DropID);
-
-    if (!(((CMobEntity*)m_PBaseEntity)->m_ItemStolen) && (DropList != nullptr && DropList->size()))
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+    if (PMob)
     {
-        for (uint8 i = 0; i < DropList->size(); ++i)
+        DropList_t* PDropList = itemutils::GetDropList(PMob->m_DropID);
+
+        if (PDropList && !PMob->m_ItemStolen)
         {
-            if (DropList->at(i).DropType == DROP_STEAL)
+            for (const DropItem_t& drop : *PDropList)
             {
-                lua_pushinteger(L, DropList->at(i).ItemID);
-                return 1;
+                if (drop.DropType == DROP_STEAL)
+                {
+                    lua_pushinteger(L, drop.ItemID);
+                    return 1;
+                }
             }
         }
     }
+
     lua_pushinteger(L, 0);
+    return 1;
+}
+
+/************************************************************************
+*  Function: getDespoilItem()
+*  Purpose : Used to return the Item ID of a mob's item which can be despoiled
+*  Example : despoilItem = target:getDespoilItem()
+*  Notes   : Defaults to getStealItem() if no despoil item exists
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getDespoilItem(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+    if (PMob)
+    {
+        DropList_t* PDropList = itemutils::GetDropList(PMob->m_DropID);
+        if (PDropList && !PMob->m_ItemStolen)
+        {
+            for (const DropItem_t& drop : *PDropList)
+            {
+                if (drop.DropType == DROP_DESPOIL)
+                {
+                    lua_pushinteger(L, drop.ItemID);
+                    return 1;
+                }
+            }
+        }
+    }
+
+    return getStealItem(L);
+}
+
+/************************************************************************
+*  Function: getDespoilDebuff()
+*  Purpose : Used to get a status effect id to apply to a mob on successful despoil
+*  Example : effect = player:getDespoilDebuff()
+*  Notes   : 
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getDespoilDebuff(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint16 effectId = luautils::GetDespoilDebuff((uint16)lua_tointeger(L, 1));
+    if (effectId > 0)
+    {
+        lua_pushinteger(L, effectId);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+
     return 1;
 }
 
@@ -14417,6 +14486,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDropID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTreasure),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilDebuff),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
 
     // Custom

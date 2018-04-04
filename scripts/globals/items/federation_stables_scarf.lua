@@ -1,1 +1,20 @@
-------------------------------------------- ID: 13181-- Item: Federation Stables Scarf-- Enchantment: "Teleport" (Windurst Chocobo Stables)-----------------------------------------require("scripts/globals/teleports");require("scripts/globals/settings");require("scripts/globals/status");------------------------------------------- OnItemCheck-----------------------------------------function onItemCheck(target)    local result = 0;    if (target:isZoneVisited(241) == false) then        result = 56;    end    return result;end;------------------------------------------- OnItemUse-----------------------------------------function onItemUse(target)    federationStablesScarf(target);end;
+-----------------------------------------
+-- ID: 13181
+-- Item: Federation Stables Scarf
+-- Teleports to Chocobo Stables (Windurst)
+-----------------------------------------
+require("scripts/globals/teleports");
+require("scripts/globals/status");
+-----------------------------------------
+
+function onItemCheck(target)
+    local result = 0
+    if not target:isZoneVisited(241) then
+        result = 56
+    end
+    return result
+end;
+
+function onItemUse(target)
+    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_CHOCOWINDURST,0,4);
+end;

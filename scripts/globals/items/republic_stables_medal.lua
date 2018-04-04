@@ -1,1 +1,20 @@
-------------------------------------------- ID: 13180-- Item: Republic Stables Medal-- Enchantment: "Teleport" (Bastok Chocobo Stables)-----------------------------------------require("scripts/globals/teleports");require("scripts/globals/settings");require("scripts/globals/status");------------------------------------------- OnItemCheck-----------------------------------------function onItemCheck(target)    local result = 0;    if (target:isZoneVisited(235) == false) then        result = 56;    end    return result;end;------------------------------------------- OnItemUse-----------------------------------------function onItemUse(target)    republicStablesMedal(target);end;
+-----------------------------------------
+-- ID: 13180
+-- Item: Republic Stables Medal
+-- Teleports to Chocobo Stables (Bastok)
+-----------------------------------------
+require("scripts/globals/teleports");
+require("scripts/globals/status");
+-----------------------------------------
+
+function onItemCheck(target)
+    local result = 0
+    if not target:isZoneVisited(234) then
+        result = 56
+    end
+    return result
+end;
+
+function onItemUse(target)
+    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_CHOCOBASTOK,0,4);
+end;

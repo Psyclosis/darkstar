@@ -55,5 +55,5 @@ function onItemUse(target)
     target:setVar("NexusCapeHOUR", timeCheck.hour);
     target:setVar("NexusCapeMINUTE", timeCheck.min);
     -- End custom time recording
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_TO_LEADER,0,1);
+    target:addStatusEffectEx(dsp.effects.TELEPORT,0,TELEPORT_TO_LEADER,0,1);
 end;

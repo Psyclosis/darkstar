@@ -13,13 +13,13 @@ end;
 
 function onSpellCast(caster,target,spell)
     -- Pull base stats.
-    local dINT = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
+    local dCHR = (caster:getStat(MOD_CHR) - target:getStat(MOD_CHR));
 
     local params = {};
 
     params.diff = nil;
 
-    params.attribute = MOD_INT;
+    params.attribute = MOD_CHR;
 
     params.skillType = SINGING_SKILL;
 
@@ -28,12 +28,12 @@ function onSpellCast(caster,target,spell)
     params.effect = nil;
 
     local resist = applyResistance(caster, target, spell, params);
-    local effect = EFFECT_NONE;
+    local effect = dsp.effects.NONE;
 
     if (resist > 0.0625) then
         spell:setMsg(msgBasic.MAGIC_ERASE);
         effect = target:dispelStatusEffect();
-        if (effect == EFFECT_NONE) then
+        if (effect == dsp.effects.NONE) then
             -- no effect
             spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
         end
