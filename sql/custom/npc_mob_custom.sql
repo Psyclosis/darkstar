@@ -237,9 +237,9 @@ INSERT INTO `npc_list` VALUES (16839678,'Augment_Box','Loot Box',192,0.000,0.001
 -- 16876543
 -- ------------------------------------------------------------
 
-INSERT INTO `mob_spawn_points` VALUES (16875789,'Immanibugard','Immanibugard',96607,0.000,0.001,0.000,0); -- Force pop
-INSERT INTO `mob_spawn_points` VALUES (16875790,'Immanibugard','Immanibugard',96607,0.000,0.001,0.000,0); -- Force pop
--- INSERT INTO `mob_spawn_points` VALUES (16875791,'Immanibugard','Immanibugard',96607,0.000,0.001,0.000,0); -- Timed pop
+REPLACE INTO `mob_spawn_points` VALUES (16875789,'Immanibugard','Immanibugard',96607,0.000,0.001,0.000,0); -- Force pop
+REPLACE INTO `mob_spawn_points` VALUES (16875790,'Immanibugard','Immanibugard',96607,0.000,0.001,0.000,0); -- Force pop
+REPLACE INTO `mob_spawn_points` VALUES (16875791,'Immanibugard','Immanibugard',96607,0.000,0.001,0.000,0); -- Timed pop
 
 -- INSERT INTO `npc_list` VALUES (16875883,'Ethereal_Junction_1','Ethereal Junction',192,0.000,0.000,0.000,6,50,50,0,12,100,0,4227,0x0000020100000000000000000000000000000000,0,NULL,0);
 -- INSERT INTO `npc_list` VALUES (16875884,'Ethereal_Junction_2','Ethereal Junction',192,0.000,0.000,0.000,6,50,50,0,12,100,0,4227,0x0000020100000000000000000000000000000000,0,NULL,0);
