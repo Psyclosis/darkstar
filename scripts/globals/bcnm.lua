@@ -592,7 +592,7 @@ function checkNonTradeBCNM(player, npc, mode)
         [209] = {
                     [576] = function() return (player:hasKeyItem(TUNING_FORK_OF_EARTH))  end, -- Trial by Earth
                     [580] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_AMBER_SEAL))  end,
-                    [576] = function() return (player:hasKeyItem(AVATAR_PHANTOM_GEM))  end, -- HTB Trial by Earth
+                    [581] = function() return (player:hasKeyItem(AVATAR_PHANTOM_GEM))  end, -- HTB Trial by Earth
                },
         [211] = {
                     [608] = function() return (player:hasKeyItem(TUNING_FORK_OF_WATER))  end, -- Trial by Water
